@@ -1,7 +1,7 @@
 # SoftwareModelsProject
 ## Game description
 __Purpose and essence__<br>
-Both players want to make 4 in a row of their marker type on the board. The way to play is to choose which way the pieces fall (like the game 2048), but the objective is to get 4 in a row (like the game Connect 4).
+Both players want to make 4 in a row of their marker type on the board. The way to play is to choose which way the pieces fall (like the game 2048), but the objective is to get 4 in a row (like the game Connect 4)
 
 __Game Loop__<br>
 ```
@@ -17,6 +17,12 @@ __Game Loop__<br>
     else:
         Loop to step 1
 ```
+__Input__: UP - DOWN - LEFT - RIGHT
+Format: String - has to be one of the 4 words above
+
+__Output__: The board and the message
+The message could say "be pick another direction" or show the outcome ("player <1/2> wins" or "tie")
+The board is a grid represented by characters in the console that shows where the markers are.
 
 ## To do list
 - [x] created the github project 
