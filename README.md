@@ -18,10 +18,10 @@ __Game Loop__<br>
         Loop to step 1
 ```
 __Input__: UP - DOWN - LEFT - RIGHT<br>
-Format: String - has to be one of the 4 words above
+Format: String - has to be one of the 4 words above.
 
 __Output__: The board and the message<br>
-The message could say "be pick another direction" or show the outcome ("player <1/2> wins" or "tie")
+The message could say "be pick another direction" or show the outcome ("player <1/2> wins" or "tie").<br>
 The board is a grid represented by characters in the console that shows where the markers are.
 
 ## To do list
