@@ -1,0 +1,23 @@
+<diagram program="umletino" version="14.3.0"><zoom_level>10</zoom_level><element><id>UMLClass</id><coordinates><x>460</x><y>120</y><w>260</w><h>120</h></coordinates><panel_attributes>GameController
+--
+Attributes
++ Board board
+--
+Methods
++ boolean placeRandom()
++ boolean checkResult() //if full or if win</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>280</x><y>220</y><w>160</w><h>150</h></coordinates><panel_attributes>Board
+--
+Attributes
++ Marker[][] grid
+--
+Methods
++ shift(int direction)
++ place(Marker marker)
++ checkCell(int x, int y)
++ checkWin(int x, int y)</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>130</x><y>390</y><w>180</w><h>100</h></coordinates><panel_attributes>Marker
+--
+Attributes
+- Point location
+- int type</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>350</x><y>150</y><w>130</w><h>90</h></coordinates><panel_attributes>lt=-&gt;
+has</panel_attributes><additional_attributes>110;20;10;20;10;70</additional_attributes></element><element><id>Relation</id><coordinates><x>220</x><y>260</y><w>80</w><h>150</h></coordinates><panel_attributes>lt=&lt;-
+has</panel_attributes><additional_attributes>10;130;10;10;60;10</additional_attributes></element></diagram>
