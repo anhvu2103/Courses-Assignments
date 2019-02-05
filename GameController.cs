@@ -20,10 +20,6 @@ namespace ConnectGame.Model {
 		/// <summary>
 		/// Main entry point for game
 		/// </summary>
-		static void Main(string[] args) {
-			Console.WriteLine("This is ConnectGame, by Owen, Brian, and Anh.");
-			
-			
-		}
+		
 	}
 }
