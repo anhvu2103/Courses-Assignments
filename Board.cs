@@ -17,7 +17,10 @@ namespace ConnectGame.Model
     {
         public static readonly char EMPTY = ' ';
         public static readonly char P1 = 'X';
-        public static readonly char P2 = '0';
+        public static readonly char P2 = 'O';
+		
+		public static readonly String P1_WIN = "XXXX";
+		public static readonly String P2_WIN = "OOOO";
 
         public const int UP = 0;
         public const int RIGHT = 1;
@@ -25,7 +28,18 @@ namespace ConnectGame.Model
         public const int LEFT = 3;
 
         private char[,] board;
-        private int boardSize;
+		private int boardSize;
+        public int BoardSize {
+        	get {
+        		return boardSize;
+        	}
+			set {
+				if (value < 0) {
+					value = 0;
+				}
+				boardSize = value;
+			}
+        }
 
         public Board(int size)
         {
@@ -40,6 +54,34 @@ namespace ConnectGame.Model
                 }
             }
         }
+		
+		public int FindFreeSpace(int x0, int y0) {
+			int[] space = new int[] {x0,y0};
+			
+			while (!(space[0] == x0 && space[1] == y0)) {
+				space[1]++;
+				if (space[1] > boardSize) {
+					space[1] = 0;
+				}
+				
+				while (!(space[0] == x0 && space[1] == y0)) {
+					space[0]++;
+					if (space[0] > boardSize) {
+						space[0] = 0;
+					}
+					
+					if (CheckCell(space[0],space[1])) {
+						//found free space
+						return space;
+					}
+				}
+			}
+			
+			//reached space (x0,y0) while searching; return impossible space
+			space[0] = -1;
+			space[1] = -1;
+			return space;
+		}
 
         /// <summary>
         /// Puts a piece in the board.
@@ -58,13 +100,11 @@ namespace ConnectGame.Model
                 }
                 else
                 {
-                    Console.WriteLine(x + "," + y + " is already taken.");
                     return false;
                 }
             }
             else
             {
-                Console.WriteLine(x + "," + y + " is not on the board.");
                 return false;
             }
         }
@@ -223,5 +263,9 @@ namespace ConnectGame.Model
 
             return destination;
         }
+		
+		public char[,] GetBoard() {
+			return board;
+		}
     }
 }
