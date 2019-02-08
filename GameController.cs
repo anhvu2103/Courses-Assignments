@@ -33,7 +33,7 @@ namespace ConnectGame.Model {
         /// </summary>
 		public bool PlaceRandom()
 		{
-			int[] space = board.FindFreeSpace(random.Next(board.BoardSize),random.Next(board.BoardSize));
+			int[] space = board.FindFreeSpace(random.Next(board.BoardSize-1),random.Next(board.BoardSize-1));
 			char playerPiece;
 			if (player) {
 				playerPiece = Board.P1;
@@ -107,6 +107,7 @@ namespace ConnectGame.Model {
 			
 			bool checkX;
 			bool checkY;
+            char winner = '?';
 			
 			for(int y = 0; y < board.BoardSize; y++) 
 			{
@@ -118,11 +119,12 @@ namespace ConnectGame.Model {
 						vertical = "";
 						downRight = "";
 						downLeft = "";
-						for(int i = -3; i < 4; i++)
+                        Console.WriteLine("Checking win around " + x + "," + y);
+                        for (int i = -3; i < 4; i++)
 						{
 							checkX = x+i >= 0 && x+i < board.BoardSize;
 							checkY = y+i >= 0 && y+i < board.BoardSize;
-								
+							
 							//horizontal
 							if (checkX) {
 								horizontal += boardGrid[y,x+i];
@@ -156,28 +158,60 @@ namespace ConnectGame.Model {
 								downLeft += Board.EMPTY;
 							}
 						}
-						
-						//check wins
-						if (horizontal.IndexOf(Board.P1_WIN) > -1 || 
+                        //Console.WriteLine("h: " + horizontal);
+                        //Console.WriteLine("v: " + vertical);
+                        //Console.WriteLine("r: " + downRight);
+                        //Console.WriteLine("l: " + downLeft);
+
+                        //check wins
+                        if (horizontal.IndexOf(Board.P1_WIN) > -1 || 
 							vertical.IndexOf(Board.P1_WIN) > -1 ||
 							downRight.IndexOf(Board.P1_WIN) > -1 || 
 							downLeft.IndexOf(Board.P1_WIN) > -1) 
 						{
-							return "One";
-						}
-						else if (horizontal.IndexOf(Board.P1_WIN) > -1 || 
-								 vertical.IndexOf(Board.P1_WIN) > -1 ||
-								 downRight.IndexOf(Board.P1_WIN) > -1 || 
-								 downLeft.IndexOf(Board.P1_WIN) > -1) 
+                            Console.WriteLine("Found win for " + Board.P1);
+
+                            if (winner != Board.P2)
+                            {
+                                winner = Board.P1;
+                            }
+                            else
+                            {
+                                return Board.EMPTY.ToString();
+                            }
+                        }
+                        if (horizontal.IndexOf(Board.P2_WIN) > -1 || 
+								 vertical.IndexOf(Board.P2_WIN) > -1 ||
+								 downRight.IndexOf(Board.P2_WIN) > -1 || 
+								 downLeft.IndexOf(Board.P2_WIN) > -1) 
 						{
-							return "Two";
-						}
+                            Console.WriteLine("Found win for " + Board.P2);
+
+                            if (winner != Board.P1)
+                            {
+                                winner = Board.P2;
+                            }
+                            else
+                            {
+                                return Board.EMPTY.ToString();
+                            }
+                        }
 					}
 				}
 			}
-			
-			//no wins
-			return null;
-		}
+
+            if (winner == Board.P1)
+            {
+                return "One";
+            }
+            else if (winner == Board.P2)
+            {
+                return "Two";
+            }
+            else
+            {
+                return null;
+            }
+        }
 	}
 }

@@ -15,7 +15,7 @@ namespace ConnectGame.Model
     /// </summary>
     public class Board
     {
-        public static readonly char EMPTY = ' ';
+        public static readonly char EMPTY = '.';
         public static readonly char P1 = 'X';
         public static readonly char P2 = 'O';
 		
@@ -56,29 +56,49 @@ namespace ConnectGame.Model
         }
 		
 		public int[] FindFreeSpace(int x0, int y0) {
+            Console.WriteLine("Find free space from " + x0 + "," + y0);
 			int[] space = new int[] {x0,y0};
-			
-			while (!(space[0] == x0 && space[1] == y0)) {
-				space[1]++;
-				if (space[1] > boardSize) {
-					space[1] = 0;
-				}
-				
-				while (!(space[0] == x0 && space[1] == y0)) {
-					space[0]++;
-					if (space[0] > boardSize) {
-						space[0] = 0;
-					}
-					
-					if (CheckCell(space[0],space[1])) {
-						//found free space
-						return space;
-					}
-				}
-			}
-			
-			//reached space (x0,y0) while searching; return impossible space
-			space[0] = -1;
+
+            if (CheckCell(space[0], space[1]))
+            {
+                return space;
+            }
+            else
+            {
+                space[0]++; //move over one column to not recheck the same cell
+
+                while (!(space[0] == x0 && space[1] == y0)) //for each row...
+                {
+
+                    for (int x=0; x<boardSize-1; x++) //for each column...
+                    {
+                        Console.WriteLine("\tCheck cell (" + space[0] + "," + space[1] + ")");
+                        if (CheckCell(space[0], space[1]))
+                        {
+                            //found free space
+                            return space;
+                        }
+
+                        space[0]++;
+                        if (space[0] > boardSize - 1)
+                        {
+                            space[0] = 0;
+                        }
+                    }
+
+                    space[0] = x0;
+                    space[1]++;
+                    if (space[1] > boardSize - 1)
+                    {
+                        space[1] = 0;
+                    }
+
+                    Console.WriteLine("Next row: " + space[0] + "," + space[1]);
+                }
+            }
+
+            //reached space (x0,y0) while searching; return impossible space
+            space[0] = -1;
 			space[1] = -1;
 			return space;
 		}
@@ -89,7 +109,8 @@ namespace ConnectGame.Model
         /// </summary>
         public bool Place(int x, int y, char type)
         {
-            if (x > 0 && x < boardSize && y > 0 && y < boardSize)
+            Console.WriteLine("Try placing @" + x + "," + y);
+            if (x >= 0 && x < boardSize && y >= 0 && y < boardSize)
             {
                 //inside the board
                 if (CheckCell(x,y))
@@ -143,6 +164,7 @@ namespace ConnectGame.Model
                             char piece = board[y, x];
                             if (piece != EMPTY)
                             {
+                                board[y, x] = EMPTY;
                                 board[FindDestination(x, y, direction), x] = piece;
                             }
                         }
@@ -157,6 +179,7 @@ namespace ConnectGame.Model
                             char piece = board[y, x];
                             if (piece != EMPTY)
                             {
+                                board[y, x] = EMPTY;
                                 board[y, FindDestination(x, y, direction)] = piece;
                             }
                         }
@@ -171,6 +194,7 @@ namespace ConnectGame.Model
                             char piece = board[y, x];
                             if (piece != EMPTY)
                             {
+                                board[y, x] = EMPTY;
                                 board[FindDestination(x, y, direction), x] = piece;
                             }
                         }
@@ -185,6 +209,7 @@ namespace ConnectGame.Model
                             char piece = board[y, x];
                             if (piece != EMPTY)
                             {
+                                board[y, x] = EMPTY;
                                 board[y, FindDestination(x, y, direction)] = piece;
                             }
                         }

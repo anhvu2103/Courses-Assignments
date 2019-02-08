@@ -46,12 +46,21 @@ namespace ConnectGame {
 				
 					//draw board
 					DrawBoard();
-				
-					//check win
-					winner = gameController.CheckWin();
+
+                    //check win
+                    //winner = gameController.CheckWin();
+                    winner = null;
 					if (winner != null) {
 						play = false;
-						Console.WriteLine("Player " + winner + " wins!");
+
+                        if (winner == Board.EMPTY.ToString())
+                        {
+                            Console.WriteLine("TIE!");
+                        }
+                        else
+                        {
+                            Console.WriteLine("Player " + winner + " wins!");
+                        }
 					}
 					
 					gameController.SwitchPlayer();
@@ -69,7 +78,7 @@ namespace ConnectGame {
 			
 			for (int y=0; y<boardSize; y++) {
 				for (int x=0; x<boardSize; x++) {
-					Console.Write(board[y,x]);
+					Console.Write(board[y,x] + " ");
 				}
 				
 				Console.Write("\n");
