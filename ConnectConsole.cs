@@ -48,8 +48,7 @@ namespace ConnectGame {
 					DrawBoard();
 
                     //check win
-                    //winner = gameController.CheckWin();
-                    winner = null;
+                    winner = gameController.CheckWin();
 					if (winner != null) {
 						play = false;
 
