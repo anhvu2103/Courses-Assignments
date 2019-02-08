@@ -55,7 +55,7 @@ namespace ConnectGame.Model
             }
         }
 		
-		public int FindFreeSpace(int x0, int y0) {
+		public int[] FindFreeSpace(int x0, int y0) {
 			int[] space = new int[] {x0,y0};
 			
 			while (!(space[0] == x0 && space[1] == y0)) {

@@ -38,11 +38,11 @@ namespace ConnectGame {
 					DrawBoard();
 				
 					//request fall direction
-					Console.Write("Player " + gameController.getPlayer() + ", pick a fall direction (UP,RIGHT,DOWN,LEFT): ");
+					Console.Write("Player " + gameController.GetPlayer() + ", pick a fall direction (UP,RIGHT,DOWN,LEFT): ");
 					String direction = Console.ReadLine();
 				
 					//shift pieces
-					gameController.ShiftPieces();
+					gameController.ShiftPieces(direction);
 				
 					//draw board
 					DrawBoard();
@@ -53,6 +53,8 @@ namespace ConnectGame {
 						play = false;
 						Console.WriteLine("Player " + winner + " wins!");
 					}
+					
+					gameController.SwitchPlayer();
 				}
 				else {
 					play = false;
@@ -61,7 +63,7 @@ namespace ConnectGame {
 			}
 		}
 		
-		static DrawBoard() {
+		static void DrawBoard() {
 			char[,] board = gameController.GetBoard();
 			int boardSize = gameController.GetBoardSize();
 			

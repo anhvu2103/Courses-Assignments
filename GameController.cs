@@ -50,7 +50,7 @@ namespace ConnectGame.Model {
 
 		public char[,] GetBoard()
 		{
-			return board.getBoard();
+			return board.GetBoard();
 		}
 
 		public int GetBoardSize() 
@@ -68,41 +68,50 @@ namespace ConnectGame.Model {
 				return "Two";
 			} 
 		}
+		
+		public void SwitchPlayer() {
+			player = !player;
+		}
+		
 		public void ShiftPieces(String direction)
 		{
 			direction = direction.ToUpper();
-			int intDirection;
-			if(UP)
+			int intDirection = -1;
+			if(direction == "UP")
 			{
-				intDirection = board.UP;
+				intDirection = Board.UP;
 			}
-			if(DOWN)
+			if(direction == "DOWN")
 			{
-				intDirection = board.DOWN;
+				intDirection = Board.DOWN;
 			}
-			if(LEFT)
+			if(direction == "LEFT")
 			{
-				intDirection = board.LEFT;
+				intDirection = Board.LEFT;
 			}
-			if(RIGHT)
+			if(direction == "RIGHT")
 			{
-				intDirection = board.RIGHT;
+				intDirection = Board.RIGHT;
 			}
 			board.Shift(intDirection);
 		}
 
 		public String CheckWin()
 		{
-			char[,] board = board.GetBoard();
+			char[,] boardGrid = board.GetBoard();
 			String horizontal = "";
 			String vertical = "";
 			String downRight = "";
 			String downLeft = "";
+			
+			bool checkX;
+			bool checkY;
+			
 			for(int y = 0; y < board.BoardSize; y++) 
 			{
 				for(int x = 0; x < board.BoardSize; x++)
 				{
-					if(board[y,x] != board.EMPTY)
+					if(boardGrid[y,x] != Board.EMPTY)
 					{
 						horizontal = "";
 						vertical = "";
@@ -110,13 +119,64 @@ namespace ConnectGame.Model {
 						downLeft = "";
 						for(int i = -3; i < 4; i++)
 						{
-							//TO-DO
+							checkX = x+i >= 0 && x+i < board.BoardSize;
+							checkY = y+i >= 0 && y+i < board.BoardSize;
+								
+							//horizontal
+							if (checkX) {
+								horizontal += boardGrid[y,x+i];
+							}
+							else {
+								horizontal += Board.EMPTY;
+							}
+							
+							//vertical
+							if (checkY) {
+								vertical += boardGrid[y+i,x];
+							}
+							else {
+								vertical += Board.EMPTY;
+							}
+							
+							//downRight
+							if (checkX && checkY) {
+								downRight += boardGrid[y+i,x+i];
+							}
+							else {
+								downRight += Board.EMPTY;
+							}
+							
+							//downLeft
+							checkY = y-i >= 0 && y-i < board.BoardSize;
+							if (checkX && checkY) {
+								downLeft += boardGrid[y-i,x+i];
+							}
+							else {
+								downLeft += Board.EMPTY;
+							}
+						}
+						
+						//check wins
+						if (horizontal.IndexOf(Board.P1_WIN) > -1 || 
+							vertical.IndexOf(Board.P1_WIN) > -1 ||
+							downRight.IndexOf(Board.P1_WIN) > -1 || 
+							downLeft.IndexOf(Board.P1_WIN) > -1) 
+						{
+							return "One";
+						}
+						else if (horizontal.IndexOf(Board.P1_WIN) > -1 || 
+								 vertical.IndexOf(Board.P1_WIN) > -1 ||
+								 downRight.IndexOf(Board.P1_WIN) > -1 || 
+								 downLeft.IndexOf(Board.P1_WIN) > -1) 
+						{
+							return "Two";
 						}
 					}
-					
 				}
 			}
 			
+			//no wins
+			return null;
 		}
 	}
 }
