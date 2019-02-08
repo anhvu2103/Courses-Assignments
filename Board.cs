@@ -40,7 +40,10 @@ namespace ConnectGame.Model
 				boardSize = value;
 			}
         }
-
+        /// <summary>
+        /// Build a board
+        /// </summary>
+        /// <param name="size">Board width</param>
         public Board(int size)
         {
             boardSize = size;
@@ -55,6 +58,13 @@ namespace ConnectGame.Model
             }
         }
 		
+        /// <summary>
+        /// Finds the free space for next X or O.
+        /// </summary>
+        /// <returns>The free space.</returns>
+        /// <param name="x0">Where to start searching (column)</param>
+        /// <param name="y0">Where to start searching (row)</param>
+
 		public int[] FindFreeSpace(int x0, int y0) {
             Console.WriteLine("Find free space from " + x0 + "," + y0);
 			int[] space = new int[] {x0,y0};
@@ -149,7 +159,7 @@ namespace ConnectGame.Model
         }
 
         /// <summary>
-        /// Shift the specified direction.
+        /// Shift pieces the specified direction.
         /// </summary>
         /// <param name="direction">Direction to make the pieces fall.</param>
         public void Shift(int direction)
@@ -218,6 +228,7 @@ namespace ConnectGame.Model
             }
         }
 
+        // Find the destination for the shift
         private int FindDestination(int xPiece, int yPiece, int direction)
         {
             bool found = false;
@@ -289,6 +300,7 @@ namespace ConnectGame.Model
             return destination;
         }
 		
+        //Expose the board grid to higher level classes
 		public char[,] GetBoard() {
 			return board;
 		}

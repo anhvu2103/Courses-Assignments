@@ -33,6 +33,7 @@ namespace ConnectGame.Model {
         /// </summary>
 		public bool PlaceRandom()
 		{
+            //Place X or O randomly on the board
 			int[] space = board.FindFreeSpace(random.Next(board.BoardSize-1),random.Next(board.BoardSize-1));
 			char playerPiece;
 			if (player) {
@@ -49,6 +50,10 @@ namespace ConnectGame.Model {
 			}
 		}
 
+        /// <summary>
+        /// This gives you current board stage
+        /// </summary>
+        /// <returns>The board.</returns>
 		public char[,] GetBoard()
 		{
 			return board.GetBoard();
@@ -73,8 +78,12 @@ namespace ConnectGame.Model {
 		public void SwitchPlayer() {
 			player = !player;
 		}
-		
-		public void ShiftPieces(String direction)
+
+        /// <summary>
+        /// Shift all pieces on the board according to the direction
+        /// </summary>
+        /// <param name="direction">Direction.</param>
+        public void ShiftPieces(String direction)
 		{
 			direction = direction.ToUpper();
 			int intDirection = -1;
@@ -97,6 +106,10 @@ namespace ConnectGame.Model {
 			board.Shift(intDirection);
 		}
 
+        /// <summary>
+        /// Check the string connections to find winner
+        /// </summary>
+        /// <returns>The window.</returns>
 		public String CheckWin()
 		{
 			char[,] boardGrid = board.GetBoard();
@@ -199,7 +212,7 @@ namespace ConnectGame.Model {
 					}
 				}
 			}
-
+            /// Get the winner and print it out
             if (winner == Board.P1)
             {
                 return "One";
