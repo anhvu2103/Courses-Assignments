@@ -5,7 +5,7 @@ Date: 1 Feb 2019
 
 Course: Software Models
 
-Description:
+Description: UI for our Connect game (via console)
 
 */
 

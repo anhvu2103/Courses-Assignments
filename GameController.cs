@@ -5,7 +5,8 @@ Date: 1 Feb 2019
 
 Course: Software Models
 
-Description:
+Description: Model for Connect game, which keeps track of the state of the game (where 
+the pieces are, whose turn it is, who won, etc.)
 
 */
 
