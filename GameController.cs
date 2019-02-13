@@ -16,6 +16,7 @@ namespace ConnectGame.Model {
 	/// <summary>
 	/// GameController class
 	/// </summary>
+    [ Serializable ]
 	class GameController {
 		Random random = new Random();
 

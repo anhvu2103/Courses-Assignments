@@ -13,6 +13,7 @@ namespace ConnectGame.Model
     /// <summary>
     /// Game board
     /// </summary>
+    [Serializable]
     public class Board
     {
         public static readonly char EMPTY = '.';
