@@ -26,6 +26,16 @@ The board is a grid represented by characters in the console that shows where th
 
 ## To do list
 - [x] created the github project 
-- [ ] submit description
-- [ ] submit UML
-- [ ] submit use case diagram
+- [x] submit description
+- [x] submit UML
+- [x] submit use case diagram
+- [x] submit working version 1
+- [ ] add configuration .txt file to reset the game
+- [ ] enable progress save/load
+    - [ ] make classes serializable
+    - [ ] add game-state write to XML doc
+    - [ ] add game-state load from XML doc
+- [ ] add options for save and reset in user interface
+- [ ] update UML and use case diagrams
+- [ ] add users guide
+- [ ] submit work version 2
