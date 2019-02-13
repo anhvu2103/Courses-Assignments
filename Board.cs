@@ -64,7 +64,10 @@ namespace ConnectGame.Model
             {
                 length = 4;
             }
-            for (i=0; i<length;i++)
+
+            P1_WIN = "";
+            P2_WIN = "";
+            for (int i=0; i<length; i++)
             {
                 P1_WIN += P1;
                 P2_WIN += P2;

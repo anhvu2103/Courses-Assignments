@@ -19,22 +19,22 @@ namespace ConnectGame {
 	/// </summary>
 	class ConnectConsole {
 		static GameController gameController;
-		private static const String CMD_RESET = "RESET";
-		private static const String CMD_LOAD = "LOAD";
-		private static const String CMD_SAVE = "SAVE";
-		private static const String configFile = "connect_config.txt";
-		private static const String saveFile = "saved_game.xml";
-		private String CONFIG_COMMENT = "";
+		private static readonly String CMD_RESET = "RESET";
+		private static readonly String CMD_LOAD = "LOAD";
+		private static readonly String CMD_SAVE = "SAVE";
+		private static readonly String configFile = "connect_config.txt";
+		private static readonly String saveFile = "saved_game.xml";
+		private static readonly String CONFIG_COMMENT = "#";
 		
 		/// <summary>
 		/// Main entry point for game
 		/// </summary>
 		static void Main(string[] args) {
 			Console.WriteLine("This is ConnectGame, by Owen, Brian, and Anh.");
-            Console.WriteLine("\nTo reset the game at any point, type " + CMD_RESET + ".\n To save the current game, type " + CMD_SAVE + ".\n To load a saved game, type" + CMD_LOAD + ".");
+            Console.WriteLine("\nTo reset the game at any point, type " + CMD_RESET + ".\nTo save the current game, type " + CMD_SAVE + ".\nTo load a saved game, type " + CMD_LOAD + ".\n");
 
             //initialize board and Board constants from config file
-            reset();
+            Reset();
 			
 			bool play = true;
 			String winner = null;
@@ -52,39 +52,42 @@ namespace ConnectGame {
                     //check for reset,save,load
                     if (direction == CMD_RESET) //load from connect_config.txt
                     {
-                        reset();
+                        Reset();
                     }
                     else if (direction == CMD_SAVE) //save to saved_game.xml
                     {
-
+                        //TODO: save
                     }
                     else if (direction == CMD_LOAD) //load from saved_game.xml
                     {
-
+                        //TODO: load
                     }
+                    else
+                    {
+                        //shift pieces
+                        gameController.ShiftPieces(direction);
 
-                    //shift pieces
-                    gameController.ShiftPieces(direction);
-				
-					//draw board
-					DrawBoard();
+                        //draw board
+                        DrawBoard();
 
-                    //check win
-                    winner = gameController.CheckWin();
-					if (winner != null) {
-						play = false;
-
-                        if (winner == Board.EMPTY.ToString())
+                        //check win
+                        winner = gameController.CheckWin();
+                        if (winner != null)
                         {
-                            Console.WriteLine("TIE!");
+                            play = false;
+
+                            if (winner == Board.EMPTY.ToString())
+                            {
+                                Console.WriteLine("TIE!");
+                            }
+                            else
+                            {
+                                Console.WriteLine("Player " + winner + " wins!");
+                            }
                         }
-                        else
-                        {
-                            Console.WriteLine("Player " + winner + " wins!");
-                        }
-					}
-					
-					gameController.SwitchPlayer();
+
+                        gameController.SwitchPlayer();
+                    }
 				}
 				else {
 					play = false;
@@ -106,8 +109,10 @@ namespace ConnectGame {
 			}
 		}
 
-        static void reset() //load from connect_config.txt
+        static void Reset() //load from connect_config.txt
         {
+            Console.WriteLine("\nInitializing new game...\n");
+
             try
             {
                 StreamReader configReader = File.OpenText(configFile);
@@ -123,11 +128,12 @@ namespace ConnectGame {
                                 try
                                 {
                                     int size = int.Parse(line);
+                                    Console.WriteLine("Board size: " + size);
                                     gameController = new GameController(size);
                                 }
                                 catch (Exception e)
                                 {
-                                    Console.WriteLine("Given board size " + line + " is invalid."); 
+                                    Console.WriteLine("Given board size " + line + " is invalid.");
                                 }
                                 break;
 
@@ -136,6 +142,7 @@ namespace ConnectGame {
                                 {
                                     int winLength = int.Parse(line);
                                     gameController.SetWinLength(winLength);
+                                    Console.WriteLine("Win length: " + winLength);
                                 }
                                 catch (Exception e)
                                 {
@@ -146,11 +153,13 @@ namespace ConnectGame {
                             case 1: //player 1 char
                                 char p1 = line.ToCharArray()[0];
                                 gameController.SetP1(p1);
+                                Console.WriteLine("Player 1: " + p1);
                                 break;
 
                             case 2: //player 2 char
                                 char p2 = line.ToCharArray()[0];
                                 gameController.SetP2(p2);
+                                Console.WriteLine("Player 2: " + p2);
                                 break;
 
                             default:
@@ -162,6 +171,7 @@ namespace ConnectGame {
                     }
                 }
 
+                Console.Write("\n");
                 gameController.SetPlayer(true); //player1's turn
             }
             catch (FileNotFoundException e)

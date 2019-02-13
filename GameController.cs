@@ -32,17 +32,19 @@ namespace ConnectGame.Model {
 			board = new Board(size);	
 		}
 
-		public void SetWinLength(int length)
+        public void SetWinLength(int length)
 		{
-			board.SetWinLength();
+			board.SetWinLength(length);
 		}
+
 		public void SetP1(char p1)
 		{
-			board.P1 = p1;
+			Board.P1 = p1;
 		}
+
 		public void SetP2(char p2)
 		{
-			board.P2 = p2;
+			Board.P2 = p2;
 		}
 
 		/// <summary>
@@ -127,6 +129,7 @@ namespace ConnectGame.Model {
 			board.Shift(intDirection);
 		}
 
+        //TODO: change GameController.CheckWin() to change based on win length from config file
         /// <summary>
         /// Check the string connections to find winner
         /// </summary>
