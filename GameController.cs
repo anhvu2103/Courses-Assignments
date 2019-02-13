@@ -25,8 +25,24 @@ namespace ConnectGame.Model {
 
 		public GameController(int size) 
 		{
-			board = new Board(size);
+			if (size <= 0)
+			{
+				size = 7;
+			}
+			board = new Board(size);	
+		}
 
+		public void SetWinLength(int length)
+		{
+			board.SetWinLength();
+		}
+		public void SetP1(char p1)
+		{
+			board.P1 = p1;
+		}
+		public void SetP2(char p2)
+		{
+			board.P2 = p2;
 		}
 
 		/// <summary>
@@ -74,6 +90,10 @@ namespace ConnectGame.Model {
 			{
 				return "Two";
 			} 
+		}
+		public void SetPlayer(bool player)
+		{
+			this.player = player;
 		}
 		
 		public void SwitchPlayer() {

@@ -18,7 +18,13 @@ namespace ConnectGame {
 	/// GameController class
 	/// </summary>
 	class ConnectConsole {
-        static GameController gameController;
+		static GameController gameController;
+		private static const String CMD_RESET = "RESET";
+		private static const String CMD_LOAD = "LOAD";
+		private static const String CMD_SAVE = "SAVE";
+		private static const String configFile = "connect_config.txt";
+		private static const String saveFile = "saved_game.xml";
+		private String CONFIG_COMMENT = "";
 		
 		/// <summary>
 		/// Main entry point for game
