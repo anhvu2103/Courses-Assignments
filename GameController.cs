@@ -16,6 +16,7 @@ namespace ConnectGame.Model {
 	/// <summary>
 	/// GameController class
 	/// </summary>
+    [ Serializable ]
 	class GameController {
 		Random random = new Random();
 
@@ -24,8 +25,26 @@ namespace ConnectGame.Model {
 
 		public GameController(int size) 
 		{
-			board = new Board(size);
+			if (size <= 0)
+			{
+				size = 7;
+			}
+			board = new Board(size);	
+		}
 
+        public void SetWinLength(int length)
+		{
+			board.SetWinLength(length);
+		}
+
+		public void SetP1(char p1)
+		{
+			Board.P1 = p1;
+		}
+
+		public void SetP2(char p2)
+		{
+			Board.P2 = p2;
 		}
 
 		/// <summary>
@@ -74,6 +93,10 @@ namespace ConnectGame.Model {
 				return "Two";
 			} 
 		}
+		public void SetPlayer(bool player)
+		{
+			this.player = player;
+		}
 		
 		public void SwitchPlayer() {
 			player = !player;
@@ -106,6 +129,7 @@ namespace ConnectGame.Model {
 			board.Shift(intDirection);
 		}
 
+        //TODO: change GameController.CheckWin() to change based on win length from config file
         /// <summary>
         /// Check the string connections to find winner
         /// </summary>

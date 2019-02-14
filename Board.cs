@@ -13,14 +13,15 @@ namespace ConnectGame.Model
     /// <summary>
     /// Game board
     /// </summary>
+    [Serializable]
     public class Board
     {
-        public static readonly char EMPTY = '.';
-        public static readonly char P1 = 'X';
-        public static readonly char P2 = 'O';
+        public static char EMPTY = '.';
+        public static char P1 = 'X';
+        public static char P2 = 'O';
 		
-		public static readonly String P1_WIN = "XXXX";
-		public static readonly String P2_WIN = "OOOO";
+		public static String P1_WIN = "XXXX";
+		public static String P2_WIN = "OOOO";
 
         public const int UP = 0;
         public const int RIGHT = 1;
@@ -55,6 +56,21 @@ namespace ConnectGame.Model
                 {
                     board[y, x] = EMPTY;
                 }
+            }
+        }
+        public void SetWinLength(int length)
+        {
+            if (length < 4)
+            {
+                length = 4;
+            }
+
+            P1_WIN = "";
+            P2_WIN = "";
+            for (int i=0; i<length; i++)
+            {
+                P1_WIN += P1;
+                P2_WIN += P2;
             }
         }
 		
