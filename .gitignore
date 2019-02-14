@@ -1,2 +1,4 @@
 *.exe
+*.xml
+.DS_Store
 

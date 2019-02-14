@@ -185,7 +185,7 @@ namespace ConnectGame
                     }
                 }
 
-                Console.Write("\n");
+                Console.Write("\nCurrent game was begun: " + gameController.timeStamp + "\n");
                 gameController.SetPlayer(true); //player1's turn
             }
             catch (FileNotFoundException e)
@@ -228,7 +228,8 @@ namespace ConnectGame
             try
             {
                 gameController = (GameController) deserializer.Deserialize(loadStream);
-                Console.WriteLine("Game loaded!\n");
+                Console.WriteLine("Game loaded!");
+                Console.WriteLine("Current game was begun: " + gameController.timeStamp + "\n");
             }
             catch (SerializationException e)
             {
