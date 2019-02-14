@@ -21,7 +21,8 @@ namespace ConnectGame.Model {
 		Random random = new Random();
 
 		private Board board;
-		private bool player; 
+		private bool player;
+        private string timeStamp; 
 
 		public GameController(int size) 
 		{
@@ -29,7 +30,8 @@ namespace ConnectGame.Model {
 			{
 				size = 7;
 			}
-			board = new Board(size);	
+			board = new Board(size);
+            timeStamp = DateTime.Now.ToString();
 		}
 
         public void SetWinLength(int length)
