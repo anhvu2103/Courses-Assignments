@@ -11,17 +11,22 @@ Description: UI for our Connect game (via console)
 
 using System;
 using System.IO;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Soap;
 using ConnectGame.Model;
 
-namespace ConnectGame {
-	/// <summary>
-	/// GameController class
-	/// </summary>
-	class ConnectConsole {
+namespace ConnectGame
+{
+    /// <summary>
+    /// GameController class
+    /// </summary>
+    class ConnectConsole 
+    {
 		static GameController gameController;
 		private static readonly String CMD_RESET = "RESET";
 		private static readonly String CMD_LOAD = "LOAD";
 		private static readonly String CMD_SAVE = "SAVE";
+        private static readonly String CMD_QUIT = "QUIT";
 		private static readonly String configFile = "connect_config.txt";
 		private static readonly String saveFile = "saved_game.xml";
 		private static readonly String CONFIG_COMMENT = "#";
@@ -31,7 +36,11 @@ namespace ConnectGame {
 		/// </summary>
 		static void Main(string[] args) {
 			Console.WriteLine("This is ConnectGame, by Owen, Brian, and Anh.");
-            Console.WriteLine("\nTo reset the game at any point, type " + CMD_RESET + ".\nTo save the current game, type " + CMD_SAVE + ".\nTo load a saved game, type " + CMD_LOAD + ".\n");
+            Console.WriteLine("\nTo reset the game at any point, type " + CMD_RESET + 
+                                ".\nTo save the current game, type " + CMD_SAVE + 
+                                ".\nTo load a saved game, type " + CMD_LOAD +
+                                ".\nTo quit, type " + CMD_QUIT + 
+                                ".\n");
 
             //initialize board and Board constants from config file
             Reset();
@@ -56,11 +65,16 @@ namespace ConnectGame {
                     }
                     else if (direction == CMD_SAVE) //save to saved_game.xml
                     {
-                        //TODO: save
+                        Save();
                     }
                     else if (direction == CMD_LOAD) //load from saved_game.xml
                     {
-                        //TODO: load
+                        Load();
+                    }
+                    else if (direction == CMD_QUIT) //quit game
+                    {
+                        Console.WriteLine("\nQuitting game...");
+                        play = false;
                     }
                     else
                     {
@@ -179,6 +193,52 @@ namespace ConnectGame {
                 Console.WriteLine("ERROR: could not find configuration file");
             }
 
+        }
+
+        static void Save()
+        {
+            Console.WriteLine("\nSaving game...");
+            Stream saveStream = File.Create(saveFile);
+
+            SoapFormatter serializer = new SoapFormatter();
+
+            try
+            {
+                serializer.Serialize(saveStream, gameController);
+                Console.WriteLine("Game saved to " + saveFile);
+            }
+            catch (SerializationException e)
+            {
+                Console.WriteLine("Game save failed: " + e.Message);
+            }
+            finally
+            {
+                saveStream.Close();
+                Console.Write("\n");
+            }
+        }
+
+        static void Load()
+        {
+            Console.WriteLine("\nLoading saved game...");
+            FileStream loadStream = new FileStream(saveFile, FileMode.Open);
+
+            SoapFormatter deserializer = new SoapFormatter();
+
+            try
+            {
+                gameController = (GameController) deserializer.Deserialize(loadStream);
+                Console.WriteLine("Game loaded!\n");
+            }
+            catch (SerializationException e)
+            {
+                Console.WriteLine("Game load failed: " + e.Message);
+            }
+            finally
+            {
+                loadStream.Close();
+                Console.Write("\n");
+            }
         }
     }
 }
