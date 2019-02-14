@@ -1,0 +1,231 @@
+BrianPark-MacBook-Pro:SoftwareModelsProject brianpark$ mono ConnectGame.exe
+This is ConnectGame, by Owen, Brian, and Anh.
+
+To reset the game at any point, type RESET.
+To save the current game, type SAVE.
+To load a saved game, type LOAD.
+To quit, type QUIT.
+
+
+Initializing new game...
+
+Board size: 7
+Player 1: X
+Player 2: O
+Win length: 4
+
+Current game was begun: 2/13/2019 9:57:09 PM
+Find free space from 4,4
+Try placing @4,4
+. . . . . . . 
+. . . . . . . 
+. . . . . . . 
+. . . . . . . 
+. . . . X . . 
+. . . . . . . 
+. . . . . . . 
+Player One, pick a fall direction (UP,RIGHT,DOWN,LEFT): left
+. . . . . . . 
+. . . . . . . 
+. . . . . . . 
+. . . . . . . 
+X . . . . . . 
+. . . . . . . 
+. . . . . . . 
+Checking win around 0,4
+Find free space from 3,5
+Try placing @3,5
+. . . . . . . 
+. . . . . . . 
+. . . . . . . 
+. . . . . . . 
+X . . . . . . 
+. . . O . . . 
+. . . . . . . 
+Player Two, pick a fall direction (UP,RIGHT,DOWN,LEFT): righ
+Player Two, pick a fall direction (UP,RIGHT,DOWN,LEFT): u
+Player Two, pick a fall direction (UP,RIGHT,DOWN,LEFT): up
+X . . O . . . 
+. . . . . . . 
+. . . . . . . 
+. . . . . . . 
+. . . . . . . 
+. . . . . . . 
+. . . . . . . 
+Checking win around 0,0
+Checking win around 3,0
+Find free space from 5,4
+Try placing @5,4
+X . . O . . . 
+. . . . . . . 
+. . . . . . . 
+. . . . . . . 
+. . . . . X . 
+. . . . . . . 
+. . . . . . . 
+Player One, pick a fall direction (UP,RIGHT,DOWN,LEFT): left
+X O . . . . . 
+. . . . . . . 
+. . . . . . . 
+. . . . . . . 
+X . . . . . . 
+. . . . . . . 
+. . . . . . . 
+Checking win around 0,0
+Checking win around 1,0
+Checking win around 0,4
+Find free space from 0,5
+Try placing @0,5
+X O . . . . . 
+. . . . . . . 
+. . . . . . . 
+. . . . . . . 
+X . . . . . . 
+O . . . . . . 
+. . . . . . . 
+Player Two, pick a fall direction (UP,RIGHT,DOWN,LEFT): down
+. . . . . . . 
+. . . . . . . 
+. . . . . . . 
+. . . . . . . 
+X . . . . . . 
+X . . . . . . 
+O O . . . . . 
+Checking win around 0,4
+Checking win around 0,5
+Checking win around 0,6
+Checking win around 1,6
+Find free space from 1,1
+Try placing @1,1
+. . . . . . . 
+. X . . . . . 
+. . . . . . . 
+. . . . . . . 
+X . . . . . . 
+X . . . . . . 
+O O . . . . . 
+Player One, pick a fall direction (UP,RIGHT,DOWN,LEFT): right
+. . . . . . . 
+. . . . . . X 
+. . . . . . . 
+. . . . . . . 
+. . . . . . X 
+. . . . . . X 
+. . . . . O O 
+Checking win around 6,1
+Checking win around 6,4
+Checking win around 6,5
+Checking win around 5,6
+Checking win around 6,6
+Find free space from 3,1
+Try placing @3,1
+. . . . . . . 
+. . . O . . X 
+. . . . . . . 
+. . . . . . . 
+. . . . . . X 
+. . . . . . X 
+. . . . . O O 
+Player Two, pick a fall direction (UP,RIGHT,DOWN,LEFT): save
+
+Saving game...
+Game saved to saved_game.xml
+
+Player Two, pick a fall direction (UP,RIGHT,DOWN,LEFT): left
+. . . . . . . 
+O X . . . . . 
+. . . . . . . 
+. . . . . . . 
+X . . . . . . 
+X . . . . . . 
+O O . . . . . 
+Checking win around 0,1
+Checking win around 1,1
+Checking win around 0,4
+Checking win around 0,5
+Checking win around 0,6
+Checking win around 1,6
+Find free space from 0,2
+Try placing @0,2
+. . . . . . . 
+O X . . . . . 
+X . . . . . . 
+. . . . . . . 
+X . . . . . . 
+X . . . . . . 
+O O . . . . . 
+Player One, pick a fall direction (UP,RIGHT,DOWN,LEFT): reset
+
+Initializing new game...
+
+Board size: 7
+Player 1: X
+Player 2: O
+Win length: 4
+
+Current game was begun: 2/13/2019 9:58:13 PM
+. . . . . . . 
+. . . . . . . 
+. . . . . . . 
+. . . . . . . 
+. . . . . . . 
+. . . . . . . 
+. . . . . . . 
+Find free space from 5,5
+Try placing @5,5
+. . . . . . . 
+. . . . . . . 
+. . . . . . . 
+. . . . . . . 
+. . . . . . . 
+. . . . . O . 
+. . . . . . . 
+Player Two, pick a fall direction (UP,RIGHT,DOWN,LEFT): down
+. . . . . . . 
+. . . . . . . 
+. . . . . . . 
+. . . . . . . 
+. . . . . . . 
+. . . . . . . 
+. . . . . O . 
+Checking win around 5,6
+Find free space from 0,1
+Try placing @0,1
+. . . . . . . 
+X . . . . . . 
+. . . . . . . 
+. . . . . . . 
+. . . . . . . 
+. . . . . . . 
+. . . . . O . 
+Player One, pick a fall direction (UP,RIGHT,DOWN,LEFT): load
+
+Loading saved game...
+Game loaded!
+Current game was begun: 2/13/2019 9:57:09 PM
+
+
+. . . . . . . 
+. . . O . . X 
+. . . . . . . 
+. . . . . . . 
+. . . . . . X 
+. . . . . . X 
+. . . . . O O 
+Player Two, pick a fall direction (UP,RIGHT,DOWN,LEFT): quit
+
+Quitting game...
+. . . . . . . 
+. . . O . . X 
+. . . . . . . 
+. . . . . . . 
+. . . . . . X 
+. . . . . . X 
+. . . . . O O 
+Checking win around 3,1
+Checking win around 6,1
+Checking win around 6,4
+Checking win around 6,5
+Checking win around 5,6
+Checking win around 6,6
+BrianPark-MacBook-Pro:SoftwareModelsProject brianpark$ 
