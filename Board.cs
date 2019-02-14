@@ -1,9 +1,17 @@
 ﻿/*
  * Students: Owen G, Anh V, Brian P
  * Date: 5 Feb 2019
+ Revision 1: 14 Feb 2019
+ 
  * Course: Software Models
  * 
  * Description: Board class for ConnectGame
+
+Handles low-level processes related to the board and the markers.
+GameController tells it to manipulate its 2d array at a higher level, while Board executes 
+the particulars, sometimes returning boolean values denoting errors. It also has many internal
+constants, like the characters for each player, the possible character strings for wins,
+fall direction codes and the board dimensions.
  */
 
 using System;
@@ -58,7 +66,8 @@ namespace ConnectGame.Model
                 }
             }
         }
-        public void SetWinLength(int length)
+
+        public void SetWinLength(int length) //how many pieces in a row to win
         {
             if (length < 4)
             {
@@ -80,7 +89,6 @@ namespace ConnectGame.Model
         /// <returns>The free space.</returns>
         /// <param name="x0">Where to start searching (column)</param>
         /// <param name="y0">Where to start searching (row)</param>
-
 		public int[] FindFreeSpace(int x0, int y0) {
             Console.WriteLine("Find free space from " + x0 + "," + y0);
 			int[] space = new int[] {x0,y0};
@@ -157,7 +165,7 @@ namespace ConnectGame.Model
         }
 
         /// <summary>
-        /// Checks to see if given cell is empty.
+        /// Checks to see if given cell is empty. Called in Place().
         /// </summary>
         /// <returns><c>true</c>, if cell was checked, <c>false</c> otherwise.</returns>
         /// <param name="x">The x coordinate.</param>
@@ -244,7 +252,7 @@ namespace ConnectGame.Model
             }
         }
 
-        // Find the destination for the shift
+        // Find the destination for Shift(direction)
         private int FindDestination(int xPiece, int yPiece, int direction)
         {
             bool found = false;

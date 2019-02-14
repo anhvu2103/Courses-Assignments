@@ -2,11 +2,20 @@
 
 Group: Owen G, Brian P, Anh V
 Date: 1 Feb 2019
+Revision 1: 14 Feb 2019
 
 Course: Software Models
 
 Description: UI for our Connect game (via console)
 
+Both players want to make 4 in a row of their marker type on the board. 
+The way to play is to choose which way the pieces fall (like the game 2048), 
+but the objective is to get 4 in a row (like the game Connect 4).
+
+The console requests a direction (UP,DOWN,LEFT,RIGHT) or a 
+game setting (SAVE, LOAD, RESET, QUIT) from the user.
+Direction is handled by the GameController and the game setting is handled by
+the ConnectConsole. 
 */
 
 using System;
@@ -52,7 +61,7 @@ namespace ConnectGame
 			while (play) {
 				//place piece in random spot
 				if (gameController.PlaceRandom()) {
-					//draw board
+					//draw board before shift
 					DrawBoard();
 				
 					shifted = false;
@@ -89,7 +98,7 @@ namespace ConnectGame
 	                    }
 					}
 					
-                    //draw board
+                    //draw board after shift
                     DrawBoard();
 
                     //check win
@@ -111,7 +120,7 @@ namespace ConnectGame
 					//switch whose turn it is
                     gameController.SwitchPlayer();
 				}
-				else {
+				else { //GameController.board could not find any more free spaces to place a new piece
 					play = false;
 					Console.WriteLine("No more available spaces.\nTIE!");
 				}
@@ -203,7 +212,7 @@ namespace ConnectGame
 
         }
 
-        static void Save()
+        static void Save() //save current GameController to saved_game.xml
         {
             Console.WriteLine("\nSaving game...");
             Stream saveStream = File.Create(saveFile);
@@ -226,7 +235,7 @@ namespace ConnectGame
             }
         }
 
-        static void Load()
+        static void Load() //read in saved_game.xml if it exists and assign the object to gameController
         {
             Console.WriteLine("\nLoading saved game...");
 			

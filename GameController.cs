@@ -2,11 +2,14 @@
 
 Group: Owen G, Brian P, Anh V
 Date: 1 Feb 2019
+Revision 1: 14 Feb 2019
 
 Course: Software Models
 
 Description: Model for Connect game, which keeps track of the state of the game (where 
-the pieces are, whose turn it is, who won, etc.)
+the pieces are, whose turn it is, who won, when the game was first started, etc.). It uses 
+the Board class to handle low-level board and piece manipulation, and has its own method 
+for determining who wins. 
 
 */
 
