@@ -46,6 +46,7 @@ namespace ConnectGame
             Reset();
 			
 			bool play = true;
+			bool shifted = false;
 			String winner = null;
 			
 			while (play) {
@@ -54,54 +55,61 @@ namespace ConnectGame
 					//draw board
 					DrawBoard();
 				
-					//request fall direction
-					Console.Write("Player " + gameController.GetPlayer() + ", pick a fall direction (UP,RIGHT,DOWN,LEFT): ");
-					String direction = Console.ReadLine().ToUpper();
+					shifted = false;
+					while (!shifted) {
+						//request fall direction
+						Console.Write("Player " + gameController.GetPlayer() + ", pick a fall direction (UP,RIGHT,DOWN,LEFT): ");
+						String direction = Console.ReadLine().ToUpper();
 
-                    //check for reset,save,load
-                    if (direction == CMD_RESET) //load from connect_config.txt
+	                    //check for reset,save,load
+	                    if (direction == CMD_RESET) //load from connect_config.txt
+	                    {
+	                        Reset();
+							shifted = true;
+	                    }
+	                    else if (direction == CMD_SAVE) //save to saved_game.xml
+	                    {
+	                        Save();
+	                    }
+	                    else if (direction == CMD_LOAD) //load from saved_game.xml
+	                    {
+	                        Load();
+		                    //draw board
+		                    DrawBoard();
+	                    }
+	                    else if (direction == CMD_QUIT) //quit game
+	                    {
+	                        Console.WriteLine("\nQuitting game...");
+							shifted = true;
+	                        play = false;
+	                    }
+	                    else //shift pieces
+	                    {
+							shifted = gameController.ShiftPieces(direction);
+	                    }
+					}
+					
+                    //draw board
+                    DrawBoard();
+
+                    //check win
+                    winner = gameController.CheckWin();
+                    if (winner != null)
                     {
-                        Reset();
-                    }
-                    else if (direction == CMD_SAVE) //save to saved_game.xml
-                    {
-                        Save();
-                    }
-                    else if (direction == CMD_LOAD) //load from saved_game.xml
-                    {
-                        Load();
-                    }
-                    else if (direction == CMD_QUIT) //quit game
-                    {
-                        Console.WriteLine("\nQuitting game...");
                         play = false;
-                    }
-                    else
-                    {
-                        //shift pieces
-                        gameController.ShiftPieces(direction);
 
-                        //draw board
-                        DrawBoard();
-
-                        //check win
-                        winner = gameController.CheckWin();
-                        if (winner != null)
+                        if (winner == Board.EMPTY.ToString())
                         {
-                            play = false;
-
-                            if (winner == Board.EMPTY.ToString())
-                            {
-                                Console.WriteLine("TIE!");
-                            }
-                            else
-                            {
-                                Console.WriteLine("Player " + winner + " wins!");
-                            }
+                            Console.WriteLine("TIE!");
                         }
-
-                        gameController.SwitchPlayer();
+                        else
+                        {
+                            Console.WriteLine("Player " + winner + " wins!");
+                        }
                     }
+					
+					//switch whose turn it is
+                    gameController.SwitchPlayer();
 				}
 				else {
 					play = false;
@@ -221,25 +229,30 @@ namespace ConnectGame
         static void Load()
         {
             Console.WriteLine("\nLoading saved game...");
-            FileStream loadStream = new FileStream(saveFile, FileMode.Open);
+			
+			try {
+	            FileStream loadStream = new FileStream(saveFile, FileMode.Open);
 
-            SoapFormatter deserializer = new SoapFormatter();
+	            SoapFormatter deserializer = new SoapFormatter();
 
-            try
-            {
-                gameController = (GameController) deserializer.Deserialize(loadStream);
-                Console.WriteLine("Game loaded!");
-                Console.WriteLine("Current game was begun: " + gameController.timeStamp + "\n");
-            }
-            catch (SerializationException e)
-            {
-                Console.WriteLine("Game load failed: " + e.Message);
-            }
-            finally
-            {
-                loadStream.Close();
-                Console.Write("\n");
-            }
+	            try
+	            {
+	                gameController = (GameController) deserializer.Deserialize(loadStream);
+	                Console.WriteLine("Game loaded!");
+	                Console.WriteLine("Current game was begun: " + gameController.timeStamp + "\n");
+	            }
+	            catch (SerializationException e)
+	            {
+	                Console.WriteLine("Game load failed: " + e.Message);
+	            }
+				
+				loadStream.Close();
+			}
+			catch (FileNotFoundException e) {
+				Console.WriteLine("Game load failed: no saved game found.");
+			}
+			
+            Console.Write("\n");
         }
     }
 }

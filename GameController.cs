@@ -108,7 +108,7 @@ namespace ConnectGame.Model {
         /// Shift all pieces on the board according to the direction
         /// </summary>
         /// <param name="direction">Direction.</param>
-        public void ShiftPieces(String direction)
+        public bool ShiftPieces(String direction)
 		{
 			direction = direction.ToUpper();
 			int intDirection = -1;
@@ -116,19 +116,23 @@ namespace ConnectGame.Model {
 			{
 				intDirection = Board.UP;
 			}
-			if(direction == "DOWN")
+			else if(direction == "DOWN")
 			{
 				intDirection = Board.DOWN;
 			}
-			if(direction == "LEFT")
+			else if(direction == "LEFT")
 			{
 				intDirection = Board.LEFT;
 			}
-			if(direction == "RIGHT")
+			else if(direction == "RIGHT")
 			{
 				intDirection = Board.RIGHT;
 			}
+			else {
+				return false;
+			}
 			board.Shift(intDirection);
+			return true;
 		}
 
         //TODO: change GameController.CheckWin() to change based on win length from config file

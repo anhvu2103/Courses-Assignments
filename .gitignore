@@ -1,4 +1,4 @@
 *.exe
-*.xml
+saved_game.xml
 .DS_Store
 

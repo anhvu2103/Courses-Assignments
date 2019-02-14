@@ -3,76 +3,77 @@
     <a1:GameController id="ref-1" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/ConnectGame.Model/ConnectGame%2C%20Version%3D0.0.0.0%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
       <random href="#ref-2" />
       <board href="#ref-3" />
-      <player>false</player>
+      <player>true</player>
+      <timeStamp id="ref-4">2/13/2019 9:49:07 p. m.</timeStamp>
     </a1:GameController>
     <a2:Random id="ref-2" xmlns:a2="http://schemas.microsoft.com/clr/ns/System">
-      <inext>22</inext>
-      <inextp>43</inextp>
-      <SeedArray href="#ref-4" />
+      <inext>18</inext>
+      <inextp>39</inextp>
+      <SeedArray href="#ref-5" />
     </a2:Random>
     <a1:Board id="ref-3" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/ConnectGame.Model/ConnectGame%2C%20Version%3D0.0.0.0%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
-      <board href="#ref-5" />
+      <board href="#ref-6" />
       <boardSize>7</boardSize>
     </a1:Board>
-    <SOAP-ENC:Array id="ref-4" SOAP-ENC:arrayType="xsd:int[56]">
+    <SOAP-ENC:Array id="ref-5" SOAP-ENC:arrayType="xsd:int[56]">
       <item>0</item>
-      <item>2102582353</item>
-      <item>935094001</item>
-      <item>1306885382</item>
-      <item>178478369</item>
-      <item>71245287</item>
-      <item>911280569</item>
-      <item>301741634</item>
-      <item>1373405464</item>
-      <item>1815343473</item>
-      <item>606823846</item>
-      <item>774807719</item>
-      <item>1577084058</item>
-      <item>1819681280</item>
-      <item>1094135993</item>
-      <item>1205464983</item>
-      <item>1720018233</item>
-      <item>1206435472</item>
-      <item>1861661016</item>
-      <item>1364412495</item>
-      <item>591824928</item>
-      <item>1918257257</item>
-      <item>1137727627</item>
-      <item>1856322344</item>
-      <item>990752126</item>
-      <item>862230766</item>
-      <item>766972482</item>
-      <item>560361926</item>
-      <item>242638962</item>
-      <item>1057396390</item>
-      <item>98537260</item>
-      <item>2055761848</item>
-      <item>1113831870</item>
-      <item>941066907</item>
-      <item>1153271219</item>
-      <item>1374981461</item>
-      <item>258008340</item>
-      <item>1644673963</item>
-      <item>202054804</item>
-      <item>2089716077</item>
-      <item>780076354</item>
-      <item>17546554</item>
-      <item>515266897</item>
-      <item>1314092561</item>
-      <item>814183726</item>
-      <item>1681129291</item>
-      <item>1242027838</item>
-      <item>853003471</item>
-      <item>1635460433</item>
-      <item>729706983</item>
-      <item>1949688505</item>
-      <item>2010484796</item>
-      <item>1252319747</item>
-      <item>1970651824</item>
-      <item>1243860349</item>
-      <item>1110376594</item>
+      <item>88224515</item>
+      <item>1183002204</item>
+      <item>1957981063</item>
+      <item>1000330770</item>
+      <item>1064265593</item>
+      <item>851070400</item>
+      <item>1149332628</item>
+      <item>418300718</item>
+      <item>212463983</item>
+      <item>1318921959</item>
+      <item>1064354991</item>
+      <item>802842380</item>
+      <item>1531673905</item>
+      <item>522464364</item>
+      <item>1874857406</item>
+      <item>574224300</item>
+      <item>1223770460</item>
+      <item>1317591760</item>
+      <item>1986032798</item>
+      <item>900386307</item>
+      <item>1795411869</item>
+      <item>793771904</item>
+      <item>3025682</item>
+      <item>206482443</item>
+      <item>701702021</item>
+      <item>939687714</item>
+      <item>972183440</item>
+      <item>737134793</item>
+      <item>925166740</item>
+      <item>1536855793</item>
+      <item>2138186472</item>
+      <item>1367835148</item>
+      <item>1771618394</item>
+      <item>1058890514</item>
+      <item>212218570</item>
+      <item>1331871371</item>
+      <item>1475636743</item>
+      <item>1916323240</item>
+      <item>215661499</item>
+      <item>1324738029</item>
+      <item>121608963</item>
+      <item>41336040</item>
+      <item>207461486</item>
+      <item>458742545</item>
+      <item>272661136</item>
+      <item>1317574497</item>
+      <item>1283280218</item>
+      <item>734243800</item>
+      <item>933445443</item>
+      <item>1699096364</item>
+      <item>1612445869</item>
+      <item>420311474</item>
+      <item>1197093254</item>
+      <item>1987032398</item>
+      <item>1224930185</item>
     </SOAP-ENC:Array>
-    <SOAP-ENC:Array id="ref-5" xmlns:a2="http://schemas.microsoft.com/clr/ns/System" SOAP-ENC:arrayType="a2:Char[7,7]">
+    <SOAP-ENC:Array id="ref-6" xmlns:a2="http://schemas.microsoft.com/clr/ns/System" SOAP-ENC:arrayType="a2:Char[7,7]">
       <item>.</item>
       <item>.</item>
       <item>.</item>
@@ -93,6 +94,14 @@
       <item>.</item>
       <item>.</item>
       <item>.</item>
+      <item>.</item>
+      <item>.</item>
+      <item>.</item>
+      <item>.</item>
+      <item>X</item>
+      <item>.</item>
+      <item>.</item>
+      <item>O</item>
       <item>.</item>
       <item>.</item>
       <item>.</item>
@@ -105,21 +114,13 @@
       <item>.</item>
       <item>.</item>
       <item>X</item>
-      <item>.</item>
       <item>O</item>
       <item>X</item>
       <item>.</item>
       <item>.</item>
       <item>.</item>
-      <item>X</item>
       <item>.</item>
       <item>X</item>
-      <item>X</item>
-      <item>.</item>
-      <item>.</item>
-      <item>.</item>
-      <item>O</item>
-      <item>O</item>
       <item>O</item>
       <item>X</item>
     </SOAP-ENC:Array>
