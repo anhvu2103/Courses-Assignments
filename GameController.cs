@@ -22,7 +22,7 @@ namespace ConnectGame.Model {
 
 		private Board board;
 		private bool player;
-        private string timeStamp; 
+        public string timeStamp; 
 
 		public GameController(int size) 
 		{
