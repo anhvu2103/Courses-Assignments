@@ -169,45 +169,50 @@
             // 
             // buttonUp
             // 
+            this.buttonUp.BackColor = System.Drawing.SystemColors.Control;
+            this.buttonUp.BackgroundImage = global::SlideConnectWindows.Properties.Resources.arrowUp;
+            this.buttonUp.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.buttonUp.Dock = System.Windows.Forms.DockStyle.Fill;
             this.buttonUp.Location = new System.Drawing.Point(49, 3);
             this.buttonUp.Name = "buttonUp";
             this.buttonUp.Size = new System.Drawing.Size(40, 32);
             this.buttonUp.TabIndex = 0;
-            this.buttonUp.Text = "^";
-            this.buttonUp.UseVisualStyleBackColor = true;
+            this.buttonUp.UseVisualStyleBackColor = false;
             this.buttonUp.Click += new System.EventHandler(this.buttonUp_Click);
             // 
             // buttonLeft
             // 
+            this.buttonLeft.BackgroundImage = global::SlideConnectWindows.Properties.Resources.arrowLeft;
+            this.buttonLeft.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.buttonLeft.Dock = System.Windows.Forms.DockStyle.Fill;
             this.buttonLeft.Location = new System.Drawing.Point(3, 41);
             this.buttonLeft.Name = "buttonLeft";
             this.buttonLeft.Size = new System.Drawing.Size(40, 32);
             this.buttonLeft.TabIndex = 4;
-            this.buttonLeft.Text = "<";
             this.buttonLeft.UseVisualStyleBackColor = true;
             this.buttonLeft.Click += new System.EventHandler(this.buttonLeft_Click);
             // 
             // buttonRight
             // 
+            this.buttonRight.BackgroundImage = global::SlideConnectWindows.Properties.Resources.arrowRight;
+            this.buttonRight.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.buttonRight.Dock = System.Windows.Forms.DockStyle.Fill;
             this.buttonRight.Location = new System.Drawing.Point(95, 41);
             this.buttonRight.Name = "buttonRight";
             this.buttonRight.Size = new System.Drawing.Size(41, 32);
             this.buttonRight.TabIndex = 6;
-            this.buttonRight.Text = ">";
             this.buttonRight.UseVisualStyleBackColor = true;
             this.buttonRight.Click += new System.EventHandler(this.buttonRight_Click);
             // 
             // buttonDown
             // 
+            this.buttonDown.BackgroundImage = global::SlideConnectWindows.Properties.Resources.arrowDown;
+            this.buttonDown.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.buttonDown.Dock = System.Windows.Forms.DockStyle.Fill;
             this.buttonDown.Location = new System.Drawing.Point(49, 79);
             this.buttonDown.Name = "buttonDown";
             this.buttonDown.Size = new System.Drawing.Size(40, 33);
             this.buttonDown.TabIndex = 8;
-            this.buttonDown.Text = "v";
             this.buttonDown.UseVisualStyleBackColor = true;
             this.buttonDown.Click += new System.EventHandler(this.buttonDown_Click);
             // 
