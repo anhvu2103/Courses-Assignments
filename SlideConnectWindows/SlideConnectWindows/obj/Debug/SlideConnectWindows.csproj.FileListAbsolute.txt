@@ -2,8 +2,8 @@ C:\Users\gallaoj16\Documents\SlideConnect\SlideConnectWindows\SlideConnectWindow
 C:\Users\gallaoj16\Documents\SlideConnect\SlideConnectWindows\SlideConnectWindows\bin\Debug\SlideConnectWindows.exe
 C:\Users\gallaoj16\Documents\SlideConnect\SlideConnectWindows\SlideConnectWindows\bin\Debug\SlideConnectWindows.pdb
 C:\Users\gallaoj16\Documents\SlideConnect\SlideConnectWindows\SlideConnectWindows\obj\Debug\SlideConnectWindows.csprojResolveAssemblyReference.cache
-C:\Users\gallaoj16\Documents\SlideConnect\SlideConnectWindows\SlideConnectWindows\obj\Debug\SlideConnectWindows.MainWindow.resources
 C:\Users\gallaoj16\Documents\SlideConnect\SlideConnectWindows\SlideConnectWindows\obj\Debug\SlideConnectWindows.Properties.Resources.resources
 C:\Users\gallaoj16\Documents\SlideConnect\SlideConnectWindows\SlideConnectWindows\obj\Debug\SlideConnectWindows.csproj.GenerateResource.Cache
 C:\Users\gallaoj16\Documents\SlideConnect\SlideConnectWindows\SlideConnectWindows\obj\Debug\SlideConnectWindows.exe
 C:\Users\gallaoj16\Documents\SlideConnect\SlideConnectWindows\SlideConnectWindows\obj\Debug\SlideConnectWindows.pdb
+C:\Users\gallaoj16\Documents\SlideConnect\SlideConnectWindows\SlideConnectWindows\obj\Debug\ConnectGame.MainWindow.resources

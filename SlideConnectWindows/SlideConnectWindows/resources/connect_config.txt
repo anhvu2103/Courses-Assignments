@@ -1,0 +1,8 @@
+﻿# board size
+7
+# player 1 color: r,g,b
+255,0,0
+# player 2 color
+0,0,255
+# how many to win
+4

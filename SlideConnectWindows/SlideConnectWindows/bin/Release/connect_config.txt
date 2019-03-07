@@ -1,0 +1,8 @@
+﻿# board size
+7
+# player 1 char
+X
+# player 2 char
+O
+# how many to win
+4

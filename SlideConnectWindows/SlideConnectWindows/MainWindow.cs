@@ -8,10 +8,15 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace SlideConnectWindows
+using ConnectGame.Control;
+using ConnectGame.Model;
+
+namespace ConnectGame
 {
     public partial class MainWindow : Form
     {
+        private GameController gameController;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -21,17 +26,23 @@ namespace SlideConnectWindows
 
         private void buttonSave_Click(object sender, EventArgs e)
         {
-            labelConsole.Text = "Saving game...";
+            //save game
+            gameController.Save();
+            //stay in idle state
         }
 
         private void buttonLoad_Click(object sender, EventArgs e)
         {
-            labelConsole.Text = "Loading game...";
+            //load saved game
+            gameController.Load();
+            //stay in idle state
         }
 
         private void buttonReset_Click(object sender, EventArgs e)
         {
-            labelConsole.Text = "Resetting game...";
+            //reset game
+            gameController.Reset();
+            //stay in idle state
         }
 
         private void buttonUp_Click(object sender, EventArgs e)
@@ -57,6 +68,9 @@ namespace SlideConnectWindows
         private void window_Shown(object sender, EventArgs e)
         {
             labelConsole.Text = "Main window loaded";
+
+            gameController = new GameController(this);
+            gameController.Reset();
         }
     }
 }
