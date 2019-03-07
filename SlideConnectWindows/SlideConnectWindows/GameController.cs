@@ -35,11 +35,59 @@ namespace ConnectGame.Control {
 		private Board board = null;
 
         public MainWindow gui;
+		
+		//state variables
+		public const int STATE_PLAY = 1;
+		public const int STATE_PROMPT = 2;
+		public const int STATE_IDLE = 3;
+		public const int STATE_SHIFT = 4;
+		public const int STATE_PUT = 5;
+		public const int STATE_WIN = 6;
+		public const int STATE_TIE = 7;
+		public const int STATE_AGAIN = 8;
+			
+		public int gameState; //play, prompt
+		public int playState; //idle, shift, put
+		public int promptState; //win, tie, again
 
 		public GameController(MainWindow gui) 
 		{
 			board = new Board(7,DateTime.Now.ToString());
             this.gui = gui;
+			
+			GoState(ref gameState, STATE_PLAY);
+			GoState(ref playState, STATE_PUT);
+		}
+		
+		public void GoState(ref var, int state) 
+		{
+			var = state;
+		}
+		
+		public void EventShift(int direction) 
+		{
+			GoState(ref playState, STATE_SHIFT);
+			board.Shift(direction);
+			
+			string winner = CheckWin();
+			
+			if (winner != null) { //win
+				GoState(ref gameState, STATE_WIN);
+				gui.ShowWin(winner);
+			}
+			else { //no win
+				GoState(ref playState, STATE_PUT);
+				bool foundSpot = PlaceRandom();
+				
+				if (foundSpot) {
+					GoState(ref playState, STATE_IDLE);
+				}
+				else { //tie
+					GoState(ref gameState, STATE_PROMPT);
+					GoState(ref promptState, STATE_TIE);
+					gui.ShowTie();
+				}
+			}
 		}
 
         public void Reset()
@@ -258,42 +306,11 @@ namespace ConnectGame.Control {
 			} 
 		}
 
-        /// <summary>
-        /// Shift all pieces on the board according to the direction
-        /// </summary>
-        /// <param name="direction">Direction.</param>
-        public bool ShiftPieces(String direction)
-		{
-			direction = direction.ToUpper();
-			int intDirection = -1;
-			if(direction == "UP")
-			{
-				intDirection = Board.UP;
-			}
-			else if(direction == "DOWN")
-			{
-				intDirection = Board.DOWN;
-			}
-			else if(direction == "LEFT")
-			{
-				intDirection = Board.LEFT;
-			}
-			else if(direction == "RIGHT")
-			{
-				intDirection = Board.RIGHT;
-			}
-			else {
-				return false;
-			}
-			board.Shift(intDirection);
-			return true;
-		}
-
         //TODO: change GameController.CheckWin() to change based on win length from config file
         /// <summary>
         /// Check the string connections to find winner
         /// </summary>
-        /// <returns>The window.</returns>
+        /// <returns>One, Two, or NULL</returns>
 		public String CheckWin()
 		{
 			char[,] boardGrid = board.GetBoard();
