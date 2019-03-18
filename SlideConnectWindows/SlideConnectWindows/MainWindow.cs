@@ -23,8 +23,26 @@ namespace ConnectGame
 
             this.Shown += new EventHandler(window_Shown);
         }
-		
-		public void ShowWin(string winner) {
+
+        public void ShowBoard()
+        {
+            char[,] board = gameController.GetBoard();
+            int n = gameController.GetBoardSize();
+
+            for (int y = 0; y < n; y++)
+            {
+                for (int x = 0; x < n; x++)
+                {
+                    Console.Write(board[y,x] + " ");
+                }
+
+                Console.Write("\n");
+            }
+            Console.Write("\n");
+        }
+
+        public void ShowWin(string winner)
+        {
 			//show win dialog window
 			//handle OK, ask to play again
 			//TODO 
@@ -66,9 +84,7 @@ namespace ConnectGame
         private void buttonRight_Click(object sender, EventArgs e)
         {
             //pass direction to controller
-			if (gameController.EventShift(Board.RIGHT)) {
-				//TODO
-			}
+            gameController.EventShift(Board.RIGHT);
         }
 
         private void buttonLeft_Click(object sender, EventArgs e)

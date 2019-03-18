@@ -43,7 +43,7 @@ namespace ConnectGame.Model
         public Color p1Color;
         public Color p2Color;
 
-        public readonly bool player;
+        public bool player;
         public readonly string timeStamp;
 
         public int BoardSize {

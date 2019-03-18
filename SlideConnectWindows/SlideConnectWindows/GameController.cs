@@ -59,35 +59,52 @@ namespace ConnectGame.Control {
 			GoState(ref playState, STATE_PUT);
 		}
 		
-		public void GoState(ref var, int state) 
+		public void GoState(ref int var, int state) 
 		{
+            switch (state)
+            {
+                case STATE_PLAY: //start new game
+                    break;
+
+                case STATE_PUT: //place current player's piece type in a random spot on the board
+                    bool foundSpot = PlaceRandom();
+
+				    if (foundSpot) {
+					    GoState(ref playState, STATE_IDLE);
+				    }
+				    else { //tie
+					    GoState(ref gameState, STATE_PROMPT);
+					    GoState(ref promptState, STATE_TIE);
+					    gui.ShowTie();
+				    }
+                    break;
+
+                case STATE_SHIFT: //actual shifting done prior
+                    string winner = CheckWin();
+
+			        if (winner != null) { //win
+				        GoState(ref gameState, STATE_WIN);
+				        gui.ShowWin(winner);
+			        }
+			        else { //no win
+				        GoState(ref playState, STATE_PUT);
+                        gui.ShowBoard();
+			        }
+                    break;
+
+                case STATE_PROMPT:
+                    break;
+            }
+
 			var = state;
 		}
 		
 		public void EventShift(int direction) 
 		{
+            board.player = !board.player;
+            board.Shift(direction);
+
 			GoState(ref playState, STATE_SHIFT);
-			board.Shift(direction);
-			
-			string winner = CheckWin();
-			
-			if (winner != null) { //win
-				GoState(ref gameState, STATE_WIN);
-				gui.ShowWin(winner);
-			}
-			else { //no win
-				GoState(ref playState, STATE_PUT);
-				bool foundSpot = PlaceRandom();
-				
-				if (foundSpot) {
-					GoState(ref playState, STATE_IDLE);
-				}
-				else { //tie
-					GoState(ref gameState, STATE_PROMPT);
-					GoState(ref promptState, STATE_TIE);
-					gui.ShowTie();
-				}
-			}
 		}
 
         public void Reset()
