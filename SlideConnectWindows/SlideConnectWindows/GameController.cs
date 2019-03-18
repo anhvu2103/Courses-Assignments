@@ -54,9 +54,6 @@ namespace ConnectGame.Control {
 		{
 			board = new Board(7,DateTime.Now.ToString());
             this.gui = gui;
-			
-			GoState(ref gameState, STATE_PLAY);
-			GoState(ref playState, STATE_PUT);
 		}
 		
 		public void GoState(ref int var, int state) 
@@ -77,6 +74,9 @@ namespace ConnectGame.Control {
 					    GoState(ref promptState, STATE_TIE);
 					    gui.ShowTie();
 				    }
+
+                    gui.ShowBoard();
+
                     break;
 
                 case STATE_SHIFT: //actual shifting done prior
@@ -88,21 +88,27 @@ namespace ConnectGame.Control {
 			        }
 			        else { //no win
 				        GoState(ref playState, STATE_PUT);
-                        gui.ShowBoard();
 			        }
                     break;
 
                 case STATE_PROMPT:
                     break;
+
+                case STATE_WIN:
+                case STATE_TIE:
+                    gui.ShowBoard();
+                    break;
             }
 
 			var = state;
+
+            gui.ActiveControl = null;
 		}
 		
 		public void EventShift(int direction) 
 		{
-            board.player = !board.player;
             board.Shift(direction);
+            board.player = !board.player;
 
 			GoState(ref playState, STATE_SHIFT);
 		}
@@ -190,6 +196,9 @@ namespace ConnectGame.Control {
                 }
 
                 gui.labelConsole.Text = "Current game was begun: " + board.timeStamp;
+
+                GoState(ref gameState, STATE_PLAY);
+                GoState(ref playState, STATE_PUT);
             }
             catch (FileNotFoundException)
             {
@@ -232,6 +241,8 @@ namespace ConnectGame.Control {
                 try
                 {
                     board = (Board)deserializer.Deserialize(loadStream);
+                    gui.ShowBoard();
+
                     gui.labelConsole.Text = "Game loaded!";
                     gui.labelConsole.Text = "Current game was begun: " + board.timeStamp;
                 }
@@ -404,7 +415,7 @@ namespace ConnectGame.Control {
                             }
                             else
                             {
-                                return Board.EMPTY.ToString();
+                                return null;
                             }
                         }
                         if (horizontal.IndexOf(Board.P2_WIN) > -1 || 
@@ -420,7 +431,7 @@ namespace ConnectGame.Control {
                             }
                             else
                             {
-                                return Board.EMPTY.ToString();
+                                return null;
                             }
                         }
 					}

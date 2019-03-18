@@ -16,23 +16,79 @@ namespace ConnectGame
     public partial class MainWindow : Form
     {
         private GameController gameController;
+        private Pen gridPen;
+        private Graphics boardGraphics;
+        private Pen p1Pen;
+        private Pen p2Pen;
 
         public MainWindow()
         {
             InitializeComponent();
 
+            gridPen = new Pen(Color.Black, 1);
+            p1Pen = new Pen(Color.Red, 3);
+            p2Pen = new Pen(Color.Blue, 3);
+
+            gameController = new GameController(this);
+
             this.Shown += new EventHandler(window_Shown);
+            this.Resize += new EventHandler(window_Resize);
+            this.KeyUp += new KeyEventHandler(window_KeyUp);
+        }
+
+        private void DrawGrid(int size)
+        {
+            int w = panelBoard.Width;
+            int h = panelBoard.Height;
+            int ch = h / size;
+            int cw = w / size;
+
+            for (int r = 1; r < size; r++)
+            {
+                boardGraphics.DrawLine(gridPen, 0, r*ch, w, r*ch);
+                boardGraphics.DrawLine(gridPen, r*cw, 0, r*cw, h);
+            }
+        }
+
+        private void DrawP1(int x, int y, int size)
+        {
+            int cw = panelBoard.Width / size;
+            int ch = panelBoard.Height / size;
+
+            //draw X
+            boardGraphics.DrawLine(p1Pen, x * cw, y * ch, x * cw + cw, y * ch + ch);
+            boardGraphics.DrawLine(p1Pen, x * cw + cw, y * ch, x * cw, y * ch + ch);
+        }
+
+        private void DrawP2(int x, int y, int size)
+        {
+            int cw = panelBoard.Width / size;
+            int ch = panelBoard.Height / size;
+
+            //draw O
+            boardGraphics.DrawArc(p2Pen, new Rectangle(x * cw, y * ch, cw, ch), 0, 360);
         }
 
         public void ShowBoard()
         {
             char[,] board = gameController.GetBoard();
             int n = gameController.GetBoardSize();
+            boardGraphics = panelBoard.CreateGraphics();
+
+            boardGraphics.Clear(panelBoard.BackColor);
+            DrawGrid(n);
 
             for (int y = 0; y < n; y++)
             {
                 for (int x = 0; x < n; x++)
                 {
+                    if (board[y,x] == Board.P1) {
+                        DrawP1(x,y,n);
+                    }
+                    else if (board[y,x] == Board.P2) {
+                        DrawP2(x,y,n);
+                    }
+                    
                     Console.Write(board[y,x] + " ");
                 }
 
@@ -44,14 +100,38 @@ namespace ConnectGame
         public void ShowWin(string winner)
         {
 			//show win dialog window
+            string winMessage = "Player " + winner + " wins. Play again?";
+            string winCaption = "Game Over: Win";
+            MessageBoxButtons winButtons = MessageBoxButtons.YesNo;
+            DialogResult result = MessageBox.Show(winMessage, winCaption, winButtons);
+
 			//handle OK, ask to play again
-			//TODO 
+            if (result == DialogResult.Yes)
+            {
+                gameController.Reset();
+            }
+            else
+            {
+                Close();
+            }
 		}
 		
 		public void ShowTie() {
-			//TODO
 			//show tie
+            string winMessage = "Tie! Play again?";
+            string winCaption = "Game Over: Tie";
+            MessageBoxButtons winButtons = MessageBoxButtons.YesNo;
+            DialogResult result = MessageBox.Show(winMessage, winCaption, winButtons);
+
 			//handle OK, ask to play again
+            if (result == DialogResult.Yes)
+            {
+                gameController.Reset();
+            }
+            else
+            {
+                Close();
+            }
 		}
 
         private void buttonSave_Click(object sender, EventArgs e)
@@ -99,12 +179,40 @@ namespace ConnectGame
 			gameController.EventShift(Board.DOWN);
         }
 
+        private void window_KeyUp(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.Up:
+                    gameController.EventShift(Board.UP);
+                    break;
+
+                case Keys.Right:
+                    gameController.EventShift(Board.RIGHT);
+                    break;
+
+                case Keys.Down:
+                    gameController.EventShift(Board.DOWN);
+                    break;
+
+                case Keys.Left:
+                    gameController.EventShift(Board.LEFT);
+                    break;
+            }
+        }
+
         private void window_Shown(object sender, EventArgs e)
         {
             labelConsole.Text = "Main window loaded";
 
-            gameController = new GameController(this);
             gameController.Reset();
+
+            ActiveControl = null;
+        }
+
+        private void window_Resize(object sender, EventArgs e)
+        {
+            ShowBoard();
         }
     }
 }

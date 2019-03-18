@@ -33,11 +33,12 @@
             this.menuFile = new System.Windows.Forms.ToolStripMenuItem();
             this.menuSave = new System.Windows.Forms.ToolStripMenuItem();
             this.menuReset = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuLoad = new System.Windows.Forms.ToolStripMenuItem();
             this.menuPlay = new System.Windows.Forms.ToolStripMenuItem();
-            this.shiftToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.downToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.rightToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.leftToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuUp = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuDown = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuRight = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuLeft = new System.Windows.Forms.ToolStripMenuItem();
             this.table2 = new System.Windows.Forms.TableLayoutPanel();
             this.panelBoard = new System.Windows.Forms.Panel();
             this.tableButtons = new System.Windows.Forms.TableLayoutPanel();
@@ -95,7 +96,8 @@
             // 
             this.menuFile.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menuSave,
-            this.menuReset});
+            this.menuReset,
+            this.menuLoad});
             this.menuFile.Name = "menuFile";
             this.menuFile.Size = new System.Drawing.Size(35, 20);
             this.menuFile.Text = "file";
@@ -103,49 +105,62 @@
             // menuSave
             // 
             this.menuSave.Name = "menuSave";
-            this.menuSave.Size = new System.Drawing.Size(99, 22);
+            this.menuSave.Size = new System.Drawing.Size(152, 22);
             this.menuSave.Text = "save";
+            this.menuSave.Click += new System.EventHandler(this.buttonSave_Click);
             // 
             // menuReset
             // 
             this.menuReset.Name = "menuReset";
-            this.menuReset.Size = new System.Drawing.Size(99, 22);
+            this.menuReset.Size = new System.Drawing.Size(152, 22);
             this.menuReset.Text = "reset";
+            this.menuReset.Click += new System.EventHandler(this.buttonReset_Click);
+            // 
+            // menuLoad
+            // 
+            this.menuLoad.Name = "menuLoad";
+            this.menuLoad.Size = new System.Drawing.Size(152, 22);
+            this.menuLoad.Text = "load";
+            this.menuLoad.Click += new System.EventHandler(this.buttonLoad_Click);
             // 
             // menuPlay
             // 
             this.menuPlay.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.shiftToolStripMenuItem,
-            this.downToolStripMenuItem,
-            this.rightToolStripMenuItem,
-            this.leftToolStripMenuItem});
+            this.menuUp,
+            this.menuDown,
+            this.menuRight,
+            this.menuLeft});
             this.menuPlay.Name = "menuPlay";
             this.menuPlay.Size = new System.Drawing.Size(41, 20);
             this.menuPlay.Text = "play";
             // 
-            // shiftToolStripMenuItem
+            // menuUp
             // 
-            this.shiftToolStripMenuItem.Name = "shiftToolStripMenuItem";
-            this.shiftToolStripMenuItem.Size = new System.Drawing.Size(104, 22);
-            this.shiftToolStripMenuItem.Text = "up";
+            this.menuUp.Name = "menuUp";
+            this.menuUp.Size = new System.Drawing.Size(104, 22);
+            this.menuUp.Text = "up";
+            this.menuUp.Click += new System.EventHandler(this.buttonUp_Click);
             // 
-            // downToolStripMenuItem
+            // menuDown
             // 
-            this.downToolStripMenuItem.Name = "downToolStripMenuItem";
-            this.downToolStripMenuItem.Size = new System.Drawing.Size(104, 22);
-            this.downToolStripMenuItem.Text = "down";
+            this.menuDown.Name = "menuDown";
+            this.menuDown.Size = new System.Drawing.Size(104, 22);
+            this.menuDown.Text = "down";
+            this.menuDown.Click += new System.EventHandler(this.buttonDown_Click);
             // 
-            // rightToolStripMenuItem
+            // menuRight
             // 
-            this.rightToolStripMenuItem.Name = "rightToolStripMenuItem";
-            this.rightToolStripMenuItem.Size = new System.Drawing.Size(104, 22);
-            this.rightToolStripMenuItem.Text = "right";
+            this.menuRight.Name = "menuRight";
+            this.menuRight.Size = new System.Drawing.Size(104, 22);
+            this.menuRight.Text = "right";
+            this.menuRight.Click += new System.EventHandler(this.buttonRight_Click);
             // 
-            // leftToolStripMenuItem
+            // menuLeft
             // 
-            this.leftToolStripMenuItem.Name = "leftToolStripMenuItem";
-            this.leftToolStripMenuItem.Size = new System.Drawing.Size(104, 22);
-            this.leftToolStripMenuItem.Text = "left";
+            this.menuLeft.Name = "menuLeft";
+            this.menuLeft.Size = new System.Drawing.Size(104, 22);
+            this.menuLeft.Text = "left";
+            this.menuLeft.Click += new System.EventHandler(this.buttonLeft_Click);
             // 
             // table2
             // 
@@ -160,13 +175,13 @@
             this.table2.Name = "table2";
             this.table2.RowCount = 1;
             this.table2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.table2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 438F));
+            this.table2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 289F));
             this.table2.Size = new System.Drawing.Size(652, 289);
             this.table2.TabIndex = 0;
             // 
             // panelBoard
             // 
-            this.panelBoard.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.panelBoard.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.panelBoard.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelBoard.Location = new System.Drawing.Point(3, 3);
             this.panelBoard.Name = "panelBoard";
@@ -357,10 +372,11 @@
         private System.Windows.Forms.ToolStripMenuItem menuPlay;
         private System.Windows.Forms.ToolStripMenuItem menuSave;
         private System.Windows.Forms.ToolStripMenuItem menuReset;
-        private System.Windows.Forms.ToolStripMenuItem shiftToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem downToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem rightToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem leftToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem menuUp;
+        private System.Windows.Forms.ToolStripMenuItem menuDown;
+        private System.Windows.Forms.ToolStripMenuItem menuRight;
+        private System.Windows.Forms.ToolStripMenuItem menuLeft;
+        private System.Windows.Forms.ToolStripMenuItem menuLoad;
     }
 }
 
