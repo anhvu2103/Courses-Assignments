@@ -39,6 +39,7 @@ namespace ConnectGame.Model
 
         private char[,] board;
 		private int boardSize;
+        private int[] lastPiece = new int[2];
 
         public Color p1Color;
         public Color p2Color;
@@ -58,6 +59,21 @@ namespace ConnectGame.Model
 			}
         }
 
+        public int[] LastPiece
+        {
+            get
+            {
+                return lastPiece;
+            }
+            set
+            {
+                if (value == null || value.Length == 2 && value[0] > 0 && value[0] < boardSize && value[1] > 0 && value[1] < boardSize)
+                {
+                    lastPiece = value;
+                }
+            }
+        }
+        
         /// <summary>
         /// Build a board
         /// </summary>
@@ -110,6 +126,7 @@ namespace ConnectGame.Model
 
             if (CheckCell(space[0], space[1]))
             {
+                lastPiece = space;
                 return space;
             }
             else
@@ -125,6 +142,7 @@ namespace ConnectGame.Model
                         if (CheckCell(space[0], space[1]))
                         {
                             //found free space
+                            lastPiece = space;
                             return space;
                         }
 
@@ -149,6 +167,7 @@ namespace ConnectGame.Model
             //reached space (x0,y0) while searching; return impossible space
             space[0] = -1;
 			space[1] = -1;
+            lastPiece = null;
 			return space;
 		}
 
@@ -187,7 +206,7 @@ namespace ConnectGame.Model
         /// <param name="y">The y coordinate.</param>
         public bool CheckCell(int x, int y)
         {
-            if (board[y, x] == EMPTY)
+            if (x < boardSize && y < boardSize && board[y, x] == EMPTY)
             {
                 return true;
             }

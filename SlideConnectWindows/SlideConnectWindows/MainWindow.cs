@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,6 +21,7 @@ namespace ConnectGame
         private Graphics boardGraphics;
         private Pen p1Pen;
         private Pen p2Pen;
+        private Pen highlightPen;
 
         public MainWindow()
         {
@@ -28,6 +30,7 @@ namespace ConnectGame
             gridPen = new Pen(Color.Black, 1);
             p1Pen = new Pen(Color.Red, 3);
             p2Pen = new Pen(Color.Blue, 3);
+            highlightPen = new Pen(Color.MediumPurple, 4);
 
             gameController = new GameController(this);
 
@@ -55,9 +58,16 @@ namespace ConnectGame
             int cw = panelBoard.Width / size;
             int ch = panelBoard.Height / size;
 
+            Pen pen = p1Pen;
+            int[] lastPiece = gameController.GetLastPiece();
+            if (lastPiece != null && lastPiece[0] == x && lastPiece[1] == y)
+            {
+                pen = highlightPen;
+            }
+
             //draw X
-            boardGraphics.DrawLine(p1Pen, x * cw, y * ch, x * cw + cw, y * ch + ch);
-            boardGraphics.DrawLine(p1Pen, x * cw + cw, y * ch, x * cw, y * ch + ch);
+            boardGraphics.DrawLine(pen, x * cw, y * ch, x * cw + cw, y * ch + ch);
+            boardGraphics.DrawLine(pen, x * cw + cw, y * ch, x * cw, y * ch + ch);
         }
 
         private void DrawP2(int x, int y, int size)
@@ -65,8 +75,15 @@ namespace ConnectGame
             int cw = panelBoard.Width / size;
             int ch = panelBoard.Height / size;
 
+            Pen pen = p2Pen;
+            int[] lastPiece = gameController.GetLastPiece();
+            if (lastPiece != null && lastPiece[0] == x && lastPiece[1] == y)
+            {
+                pen = highlightPen;
+            }
+
             //draw O
-            boardGraphics.DrawArc(p2Pen, new Rectangle(x * cw, y * ch, cw, ch), 0, 360);
+            boardGraphics.DrawArc(pen, new Rectangle(x * cw, y * ch, cw, ch), 0, 360);
         }
 
         public void ShowBoard()
@@ -74,6 +91,7 @@ namespace ConnectGame
             char[,] board = gameController.GetBoard();
             int n = gameController.GetBoardSize();
             boardGraphics = panelBoard.CreateGraphics();
+            boardGraphics.SmoothingMode = SmoothingMode.HighQuality;
 
             boardGraphics.Clear(panelBoard.BackColor);
             DrawGrid(n);

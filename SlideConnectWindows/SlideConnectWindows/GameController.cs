@@ -91,6 +91,15 @@ namespace ConnectGame.Control {
 			        }
                     break;
 
+                case STATE_IDLE: //print whose turn it is
+                    char player = Board.P2;
+                    if (board.player) {
+                        player = Board.P1;
+                    }
+
+                    gui.labelConsole.Text = "Player " + player + " turn.";
+                    break;
+
                 case STATE_PROMPT:
                     break;
 
@@ -293,7 +302,7 @@ namespace ConnectGame.Control {
 		public bool PlaceRandom()
 		{
             //Place X or O randomly on the board
-			int[] space = board.FindFreeSpace(random.Next(board.BoardSize-1),random.Next(board.BoardSize-1));
+			int[] space = board.FindFreeSpace(random.Next(board.BoardSize),random.Next(board.BoardSize));
 			char playerPiece;
 			if (board.player) {
 				playerPiece = Board.P1;
@@ -317,6 +326,11 @@ namespace ConnectGame.Control {
 		{
 			return board.GetBoard();
 		}
+
+        public int[] GetLastPiece()
+        {
+            return board.LastPiece;
+        }
 
 		public int GetBoardSize() 
 		{
