@@ -30,7 +30,7 @@ namespace ConnectGame
             gridPen = new Pen(Color.Black, 1);
             p1Pen = new Pen(Color.Red, 3);
             p2Pen = new Pen(Color.Blue, 3);
-            highlightPen = new Pen(Color.MediumPurple, 4);
+            highlightPen = new Pen(Color.Purple, 4);
 
             gameController = new GameController(this);
 
@@ -157,6 +157,7 @@ namespace ConnectGame
             //save game
             gameController.Save();
             //stay in idle state
+            ActiveControl = null;
         }
 
         private void buttonLoad_Click(object sender, EventArgs e)
@@ -164,6 +165,7 @@ namespace ConnectGame
             //load saved game
             gameController.Load();
             //stay in idle state
+            ActiveControl = null;
         }
 
         private void buttonReset_Click(object sender, EventArgs e)
@@ -171,6 +173,7 @@ namespace ConnectGame
             //reset game
             gameController.Reset();
             //stay in idle state
+            ActiveControl = null;
         }
 
         private void buttonUp_Click(object sender, EventArgs e)
