@@ -90,8 +90,10 @@ namespace ConnectGame.Model
                     board[y, x] = EMPTY;
                 }
             }
-
+            ///X color
             p1Color = Color.Red;
+
+            ///O color
             p2Color = Color.Blue;
 
             player = true;

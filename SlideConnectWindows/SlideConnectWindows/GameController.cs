@@ -122,6 +122,7 @@ namespace ConnectGame.Control {
 			GoState(ref playState, STATE_SHIFT);
 		}
 
+        //Reset function
         public void Reset()
         {
             gui.labelConsole.Text = "Initializing new game...";

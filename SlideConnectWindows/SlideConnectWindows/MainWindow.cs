@@ -28,9 +28,9 @@ namespace ConnectGame
             InitializeComponent();
 
             gridPen = new Pen(Color.Black, 1);
-            p1Pen = new Pen(Color.Red, 3);
-            p2Pen = new Pen(Color.Blue, 3);
-            highlightPen = new Pen(Color.Purple, 4);
+            p1Pen = new Pen(Color.Red, 3); ///Color for Xs
+            p2Pen = new Pen(Color.Blue, 3); ///Color for Os
+            highlightPen = new Pen(Color.Purple, 4); /// Color for the most recent placement on the board
 
             gameController = new GameController(this);
 
@@ -41,9 +41,11 @@ namespace ConnectGame
 
         private void DrawGrid(int size)
         {
-            int w = panelBoard.Width;
-            int h = panelBoard.Height;
-            int ch = h / size;
+            int w = panelBoard.Width; //get panel width
+            int h = panelBoard.Height; //get panel height
+
+            //Make a equally divided board following the panel's width and height
+            int ch = h / size; 
             int cw = w / size;
 
             for (int r = 1; r < size; r++)
@@ -55,6 +57,7 @@ namespace ConnectGame
 
         private void DrawP1(int x, int y, int size)
         {
+            //Set width and height for X to the same size as the square
             int cw = panelBoard.Width / size;
             int ch = panelBoard.Height / size;
 
@@ -72,6 +75,7 @@ namespace ConnectGame
 
         private void DrawP2(int x, int y, int size)
         {
+            //Set width and height for O to the same size as the square
             int cw = panelBoard.Width / size;
             int ch = panelBoard.Height / size;
 
@@ -205,18 +209,22 @@ namespace ConnectGame
             switch (e.KeyCode)
             {
                 case Keys.Up:
+                    //pass direction to controller
                     gameController.EventShift(Board.UP);
                     break;
 
                 case Keys.Right:
+                    //pass direction to controller
                     gameController.EventShift(Board.RIGHT);
                     break;
 
                 case Keys.Down:
+                    //pass direction to controller
                     gameController.EventShift(Board.DOWN);
                     break;
 
                 case Keys.Left:
+                    //pass direction to controller
                     gameController.EventShift(Board.LEFT);
                     break;
             }
@@ -227,7 +235,7 @@ namespace ConnectGame
             labelConsole.Text = "Main window loaded";
 
             gameController.Reset();
-
+            //stay in idle state
             ActiveControl = null;
         }
 

@@ -1,3 +1,10 @@
 ﻿<Properties StartupConfiguration="{AFA50208-DBCB-4A2B-9041-45530E02990B}|Default">
+  <MonoDevelop.Ide.ItemProperties.SlideConnectWindows PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MultiItemStartupConfigurations />
 </Properties>
