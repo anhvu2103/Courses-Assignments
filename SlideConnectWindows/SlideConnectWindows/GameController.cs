@@ -50,6 +50,9 @@ namespace ConnectGame.Control {
 		public int playState; //idle, shift, put
 		public int promptState; //win, tie, again
 
+        public int playTime; //current player's length of turn
+        public const int PLAYTIME_MAX = 10; //time player can stall before the controller picks a random direction for them
+
 		public GameController(MainWindow gui) 
 		{
 			board = new Board(7,DateTime.Now.ToString());
@@ -61,6 +64,8 @@ namespace ConnectGame.Control {
             switch (state)
             {
                 case STATE_PLAY: //start new game
+                    playTime = 0;
+                    gui.Resume();
                     break;
 
                 case STATE_PUT: //place current player's piece type in a random spot on the board
@@ -80,10 +85,12 @@ namespace ConnectGame.Control {
                     break;
 
                 case STATE_SHIFT: //actual shifting done prior
+                    playTime = 0;
                     string winner = CheckWin();
 
 			        if (winner != null) { //win
-				        GoState(ref gameState, STATE_WIN);
+				        GoState(ref gameState, STATE_PROMPT);
+                        GoState(ref playState, STATE_WIN);
 				        gui.ShowWin(winner);
 			        }
 			        else { //no win
@@ -101,6 +108,7 @@ namespace ConnectGame.Control {
                     break;
 
                 case STATE_PROMPT:
+                    gui.Pause();
                     break;
 
                 case STATE_WIN:
@@ -267,6 +275,8 @@ namespace ConnectGame.Control {
             {
                 gui.labelConsole.Text = "Game load failed: no saved game found.";
             }
+
+            playTime = 0;
         }
 
         public void Reset(int size)
@@ -465,6 +475,16 @@ namespace ConnectGame.Control {
             {
                 return null;
             }
+        }
+
+        public void UpdateGameTime(int increment)
+        {
+            board.gameTime += increment;
+        }
+
+        public int GetGameTime()
+        {
+            return board.gameTime;
         }
 	}
 }

@@ -28,17 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.table1 = new System.Windows.Forms.TableLayoutPanel();
-            this.menu = new System.Windows.Forms.MenuStrip();
-            this.menuFile = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuSave = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuReset = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuLoad = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuPlay = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuUp = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuDown = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuRight = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuLeft = new System.Windows.Forms.ToolStripMenuItem();
             this.table2 = new System.Windows.Forms.TableLayoutPanel();
             this.panelBoard = new System.Windows.Forms.Panel();
             this.tableButtons = new System.Windows.Forms.TableLayoutPanel();
@@ -51,20 +42,36 @@
             this.buttonLeft = new System.Windows.Forms.Button();
             this.buttonUp = new System.Windows.Forms.Button();
             this.labelConsole = new System.Windows.Forms.Label();
+            this.tableHeader = new System.Windows.Forms.TableLayoutPanel();
+            this.menu = new System.Windows.Forms.MenuStrip();
+            this.menuFile = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuSave = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuReset = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuLoad = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuPlay = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuUp = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuDown = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuRight = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuLeft = new System.Windows.Forms.ToolStripMenuItem();
+            this.progressMove = new System.Windows.Forms.ProgressBar();
+            this.labelTime = new System.Windows.Forms.Label();
+            this.timerMove = new System.Windows.Forms.Timer(this.components);
+            this.timerGame = new System.Windows.Forms.Timer(this.components);
             this.table1.SuspendLayout();
-            this.menu.SuspendLayout();
             this.table2.SuspendLayout();
             this.tableButtons.SuspendLayout();
             this.tableArrows.SuspendLayout();
+            this.tableHeader.SuspendLayout();
+            this.menu.SuspendLayout();
             this.SuspendLayout();
             // 
             // table1
             // 
             this.table1.ColumnCount = 1;
             this.table1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.table1.Controls.Add(this.menu, 0, 0);
             this.table1.Controls.Add(this.table2, 0, 1);
             this.table1.Controls.Add(this.labelConsole, 0, 2);
+            this.table1.Controls.Add(this.tableHeader, 0, 0);
             this.table1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.table1.Location = new System.Drawing.Point(0, 0);
             this.table1.Margin = new System.Windows.Forms.Padding(0);
@@ -75,92 +82,6 @@
             this.table1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.table1.Size = new System.Drawing.Size(652, 364);
             this.table1.TabIndex = 0;
-            // 
-            // menu
-            // 
-            this.menu.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.menu.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.menu.Dock = System.Windows.Forms.DockStyle.None;
-            this.menu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.menuFile,
-            this.menuPlay});
-            this.menu.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow;
-            this.menu.Location = new System.Drawing.Point(3, 5);
-            this.menu.Margin = new System.Windows.Forms.Padding(3);
-            this.menu.Name = "menu";
-            this.menu.Size = new System.Drawing.Size(646, 24);
-            this.menu.TabIndex = 0;
-            this.menu.Text = "menu";
-            // 
-            // menuFile
-            // 
-            this.menuFile.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.menuSave,
-            this.menuReset,
-            this.menuLoad});
-            this.menuFile.Name = "menuFile";
-            this.menuFile.Size = new System.Drawing.Size(35, 20);
-            this.menuFile.Text = "file";
-            // 
-            // menuSave
-            // 
-            this.menuSave.Name = "menuSave";
-            this.menuSave.Size = new System.Drawing.Size(152, 22);
-            this.menuSave.Text = "save";
-            this.menuSave.Click += new System.EventHandler(this.buttonSave_Click);
-            // 
-            // menuReset
-            // 
-            this.menuReset.Name = "menuReset";
-            this.menuReset.Size = new System.Drawing.Size(152, 22);
-            this.menuReset.Text = "reset";
-            this.menuReset.Click += new System.EventHandler(this.buttonReset_Click);
-            // 
-            // menuLoad
-            // 
-            this.menuLoad.Name = "menuLoad";
-            this.menuLoad.Size = new System.Drawing.Size(152, 22);
-            this.menuLoad.Text = "load";
-            this.menuLoad.Click += new System.EventHandler(this.buttonLoad_Click);
-            // 
-            // menuPlay
-            // 
-            this.menuPlay.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.menuUp,
-            this.menuDown,
-            this.menuRight,
-            this.menuLeft});
-            this.menuPlay.Name = "menuPlay";
-            this.menuPlay.Size = new System.Drawing.Size(41, 20);
-            this.menuPlay.Text = "play";
-            // 
-            // menuUp
-            // 
-            this.menuUp.Name = "menuUp";
-            this.menuUp.Size = new System.Drawing.Size(104, 22);
-            this.menuUp.Text = "up";
-            this.menuUp.Click += new System.EventHandler(this.buttonUp_Click);
-            // 
-            // menuDown
-            // 
-            this.menuDown.Name = "menuDown";
-            this.menuDown.Size = new System.Drawing.Size(104, 22);
-            this.menuDown.Text = "down";
-            this.menuDown.Click += new System.EventHandler(this.buttonDown_Click);
-            // 
-            // menuRight
-            // 
-            this.menuRight.Name = "menuRight";
-            this.menuRight.Size = new System.Drawing.Size(104, 22);
-            this.menuRight.Text = "right";
-            this.menuRight.Click += new System.EventHandler(this.buttonRight_Click);
-            // 
-            // menuLeft
-            // 
-            this.menuLeft.Name = "menuLeft";
-            this.menuLeft.Size = new System.Drawing.Size(104, 22);
-            this.menuLeft.Text = "left";
-            this.menuLeft.Click += new System.EventHandler(this.buttonLeft_Click);
             // 
             // table2
             // 
@@ -332,6 +253,141 @@
             this.labelConsole.Text = "console";
             this.labelConsole.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // tableHeader
+            // 
+            this.tableHeader.ColumnCount = 3;
+            this.tableHeader.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 18.60037F));
+            this.tableHeader.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 81.39964F));
+            this.tableHeader.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 105F));
+            this.tableHeader.Controls.Add(this.menu, 0, 0);
+            this.tableHeader.Controls.Add(this.progressMove, 1, 0);
+            this.tableHeader.Controls.Add(this.labelTime, 2, 0);
+            this.tableHeader.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableHeader.Location = new System.Drawing.Point(3, 3);
+            this.tableHeader.Name = "tableHeader";
+            this.tableHeader.RowCount = 1;
+            this.tableHeader.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableHeader.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 29F));
+            this.tableHeader.Size = new System.Drawing.Size(646, 29);
+            this.tableHeader.TabIndex = 2;
+            // 
+            // menu
+            // 
+            this.menu.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.menu.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.menu.Dock = System.Windows.Forms.DockStyle.None;
+            this.menu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuFile,
+            this.menuPlay});
+            this.menu.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow;
+            this.menu.Location = new System.Drawing.Point(3, 3);
+            this.menu.Margin = new System.Windows.Forms.Padding(3);
+            this.menu.Name = "menu";
+            this.menu.Size = new System.Drawing.Size(94, 23);
+            this.menu.TabIndex = 0;
+            this.menu.Text = "menu";
+            // 
+            // menuFile
+            // 
+            this.menuFile.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuSave,
+            this.menuReset,
+            this.menuLoad});
+            this.menuFile.Name = "menuFile";
+            this.menuFile.Size = new System.Drawing.Size(35, 19);
+            this.menuFile.Text = "file";
+            // 
+            // menuSave
+            // 
+            this.menuSave.Name = "menuSave";
+            this.menuSave.Size = new System.Drawing.Size(99, 22);
+            this.menuSave.Text = "save";
+            this.menuSave.Click += new System.EventHandler(this.buttonSave_Click);
+            // 
+            // menuReset
+            // 
+            this.menuReset.Name = "menuReset";
+            this.menuReset.Size = new System.Drawing.Size(99, 22);
+            this.menuReset.Text = "reset";
+            this.menuReset.Click += new System.EventHandler(this.buttonReset_Click);
+            // 
+            // menuLoad
+            // 
+            this.menuLoad.Name = "menuLoad";
+            this.menuLoad.Size = new System.Drawing.Size(99, 22);
+            this.menuLoad.Text = "load";
+            this.menuLoad.Click += new System.EventHandler(this.buttonLoad_Click);
+            // 
+            // menuPlay
+            // 
+            this.menuPlay.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuUp,
+            this.menuDown,
+            this.menuRight,
+            this.menuLeft});
+            this.menuPlay.Name = "menuPlay";
+            this.menuPlay.Size = new System.Drawing.Size(41, 19);
+            this.menuPlay.Text = "play";
+            // 
+            // menuUp
+            // 
+            this.menuUp.Name = "menuUp";
+            this.menuUp.Size = new System.Drawing.Size(104, 22);
+            this.menuUp.Text = "up";
+            this.menuUp.Click += new System.EventHandler(this.buttonUp_Click);
+            // 
+            // menuDown
+            // 
+            this.menuDown.Name = "menuDown";
+            this.menuDown.Size = new System.Drawing.Size(104, 22);
+            this.menuDown.Text = "down";
+            this.menuDown.Click += new System.EventHandler(this.buttonDown_Click);
+            // 
+            // menuRight
+            // 
+            this.menuRight.Name = "menuRight";
+            this.menuRight.Size = new System.Drawing.Size(104, 22);
+            this.menuRight.Text = "right";
+            this.menuRight.Click += new System.EventHandler(this.buttonRight_Click);
+            // 
+            // menuLeft
+            // 
+            this.menuLeft.Name = "menuLeft";
+            this.menuLeft.Size = new System.Drawing.Size(104, 22);
+            this.menuLeft.Text = "left";
+            this.menuLeft.Click += new System.EventHandler(this.buttonLeft_Click);
+            // 
+            // progressMove
+            // 
+            this.progressMove.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.progressMove.Location = new System.Drawing.Point(103, 3);
+            this.progressMove.Maximum = 0;
+            this.progressMove.Name = "progressMove";
+            this.progressMove.Size = new System.Drawing.Size(434, 23);
+            this.progressMove.TabIndex = 0;
+            // 
+            // labelTime
+            // 
+            this.labelTime.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.labelTime.Location = new System.Drawing.Point(543, 0);
+            this.labelTime.Name = "labelTime";
+            this.labelTime.Size = new System.Drawing.Size(100, 29);
+            this.labelTime.TabIndex = 1;
+            this.labelTime.Text = "00:00:00";
+            this.labelTime.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // timerMove
+            // 
+            this.timerMove.Enabled = true;
+            this.timerMove.Interval = 500;
+            this.timerMove.Tick += new System.EventHandler(this.timerMove_Tick);
+            // 
+            // timerGame
+            // 
+            this.timerGame.Enabled = true;
+            this.timerGame.Interval = 1000;
+            this.timerGame.Tick += new System.EventHandler(this.timerGame_Tick);
+            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -342,12 +398,13 @@
             this.Name = "MainWindow";
             this.Text = "Slide & Connect";
             this.table1.ResumeLayout(false);
-            this.table1.PerformLayout();
-            this.menu.ResumeLayout(false);
-            this.menu.PerformLayout();
             this.table2.ResumeLayout(false);
             this.tableButtons.ResumeLayout(false);
             this.tableArrows.ResumeLayout(false);
+            this.tableHeader.ResumeLayout(false);
+            this.tableHeader.PerformLayout();
+            this.menu.ResumeLayout(false);
+            this.menu.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -377,6 +434,11 @@
         private System.Windows.Forms.ToolStripMenuItem menuRight;
         private System.Windows.Forms.ToolStripMenuItem menuLeft;
         private System.Windows.Forms.ToolStripMenuItem menuLoad;
+        private System.Windows.Forms.Timer timerMove;
+        private System.Windows.Forms.TableLayoutPanel tableHeader;
+        private System.Windows.Forms.ProgressBar progressMove;
+        private System.Windows.Forms.Label labelTime;
+        private System.Windows.Forms.Timer timerGame;
     }
 }
 

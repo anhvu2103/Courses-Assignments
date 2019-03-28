@@ -1,0 +1,79 @@
+<SOAP-ENV:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:clr="http://schemas.microsoft.com/soap/encoding/clr/1.0" SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+<SOAP-ENV:Body>
+<a1:Board id="ref-1" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/ConnectGame.Model/SlideConnectWindows%2C%20Version%3D1.0.0.0%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<board href="#ref-4"/>
+<boardSize>7</boardSize>
+<lastPiece href="#ref-5"/>
+<p1Color>
+<name xsi:null="1"/>
+<value>0</value>
+<knownColor>37</knownColor>
+<state>1</state>
+</p1Color>
+<p2Color>
+<name xsi:null="1"/>
+<value>0</value>
+<knownColor>37</knownColor>
+<state>1</state>
+</p2Color>
+<player>true</player>
+<timeStamp id="ref-6">3/28/2019 5:53:05 PM</timeStamp>
+<gameTime>115000</gameTime>
+</a1:Board>
+<SOAP-ENC:Array id="ref-4" SOAP-ENC:arrayType="a2:Char[7,7]" xmlns:a2="http://schemas.microsoft.com/clr/ns/System">
+<item>O</item>
+<item>X</item>
+<item>X</item>
+<item>X</item>
+<item>O</item>
+<item>O</item>
+<item>O</item>
+<item>X</item>
+<item>O</item>
+<item>X</item>
+<item>O</item>
+<item>X</item>
+<item>O</item>
+<item>X</item>
+<item>X</item>
+<item>O</item>
+<item>X</item>
+<item>O</item>
+<item>O</item>
+<item>O</item>
+<item>O</item>
+<item>O</item>
+<item>X</item>
+<item>O</item>
+<item>X</item>
+<item>O</item>
+<item>X</item>
+<item>O</item>
+<item>X</item>
+<item>X</item>
+<item>O</item>
+<item>X</item>
+<item>X</item>
+<item>X</item>
+<item>X</item>
+<item>X</item>
+<item>O</item>
+<item>O</item>
+<item>O</item>
+<item>X</item>
+<item>O</item>
+<item>X</item>
+<item>O</item>
+<item>X</item>
+<item>X</item>
+<item>O</item>
+<item>X</item>
+<item>O</item>
+<item>X</item>
+</SOAP-ENC:Array>
+<SOAP-ENC:Array id="ref-5" SOAP-ENC:arrayType="xsd:int[2]">
+<item>6</item>
+<item>6</item>
+</SOAP-ENC:Array>
+</SOAP-ENV:Body>
+</SOAP-ENV:Envelope>

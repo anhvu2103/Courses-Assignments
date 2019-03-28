@@ -46,6 +46,7 @@ namespace ConnectGame.Model
 
         public bool player;
         public readonly string timeStamp;
+        public int gameTime; //time played, in ms
 
         public int BoardSize {
         	get {
@@ -98,6 +99,7 @@ namespace ConnectGame.Model
 
             player = true;
             timeStamp = time;
+            gameTime = 0;
         }
 
         public void SetWinLength(int length) //how many pieces in a row to win

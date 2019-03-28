@@ -34,6 +34,9 @@ namespace ConnectGame
 
             gameController = new GameController(this);
 
+            progressMove.Minimum = 0;
+            progressMove.Maximum = GameController.PLAYTIME_MAX * 1000;
+
             this.Shown += new EventHandler(window_Shown);
             this.Resize += new EventHandler(window_Resize);
             this.KeyUp += new KeyEventHandler(window_KeyUp);
@@ -156,6 +159,25 @@ namespace ConnectGame
             }
 		}
 
+        /// <summary>
+        /// Stops timerMove and timerGame.
+        /// </summary>
+        public void Pause()
+        {
+            Console.WriteLine("GUI.Pause()");
+            timerMove.Enabled = false;
+            timerGame.Enabled = false;
+        }
+
+        /// <summary>
+        /// Resumes timerMove and timerGame.
+        /// </summary>
+        public void Resume()
+        {
+            timerMove.Enabled = true;
+            timerGame.Enabled = true;
+        }
+
         private void buttonSave_Click(object sender, EventArgs e)
         {
             //save game
@@ -242,6 +264,45 @@ namespace ConnectGame
         private void window_Resize(object sender, EventArgs e)
         {
             ShowBoard();
+        }
+
+        /// <summary>
+        /// Counts how long current player has been waiting to move.
+        /// Tick occurs every 0.5 seconds.
+        /// Updates progressMove.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void timerMove_Tick(object sender, EventArgs e)
+        {
+            gameController.playTime += timerMove.Interval;
+
+            if (gameController.playTime > GameController.PLAYTIME_MAX * 1000) //force the turn
+            {
+                int direction = (new Random()).Next(4);
+                gameController.EventShift(direction);
+            }
+
+            progressMove.Value = gameController.playTime;
+        }
+
+        /// <summary>
+        /// Counts the length of play for the current game.
+        /// Tick occurs ever 1 second.
+        /// Updates labelTime.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void timerGame_Tick(object sender, EventArgs e)
+        {
+            gameController.UpdateGameTime(timerGame.Interval);
+
+            int ms = gameController.GetGameTime();
+            int hr = ms / 1000 / 60 / 60;
+            int min = (ms - hr*60*60*1000) / 1000 / 60;
+            int s = (ms - min*60*1000) / 1000;
+
+            labelTime.Text = hr + ":" + min + ":" + s;
         }
     }
 }
