@@ -30,12 +30,12 @@ The board is a grid represented by characters in the console that shows where th
 - [x] submit UML
 - [x] submit use case diagram
 - [x] submit working version 1
-- [ ] add configuration .txt file to reset the game
-- [ ] enable progress save/load
-    - [ ] make classes serializable
-    - [ ] add game-state write to XML doc
-    - [ ] add game-state load from XML doc
-- [ ] add options for save and reset in user interface
-- [ ] update UML and use case diagrams
-- [ ] add users guide
-- [ ] submit work version 2
+- [x] add configuration .txt file to reset the game
+- [x] enable progress save/load
+    - [x] make classes serializable
+    - [x] add game-state write to XML doc
+    - [x] add game-state load from XML doc
+- [x] add options for save and reset in user interface
+- [x] update UML and use case diagrams
+- [x] add users guide
+- [x] submit work version 2
